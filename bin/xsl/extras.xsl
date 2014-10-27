@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:sdk="http://schemas.android.com/sdk/android/repository/10">
+                xmlns:sdk="http://schemas.android.com/sdk/android/addon/7">
+    <xsl:param name="vendor" />
+    <xsl:param name="path" />
     <xsl:output method="text" />
-    <xsl:template match="sdk:sdk-repository">
-        <xsl:for-each select="sdk:build-tool">
-            <xsl:sort select="./sdk:revision/sdk:major" data-type="number" order="descending" />
-            <xsl:sort select="./sdk:revision/sdk:minor" data-type="number" order="descending" />
-            <xsl:sort select="./sdk:revision/sdk:micro" data-type="number" order="descending" />
-            <xsl:if test="position() = 1"><xsl:apply-templates select="." /></xsl:if>
+    <xsl:template match="sdk:sdk-addon">
+        <xsl:for-each select="sdk:extra">
+            <xsl:if test="sdk:vendor-id = $vendor and sdk:path = $path">
+                <xsl:apply-templates select="." />
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:template match="sdk:build-tool">
-        <xsl:variable name="archive" select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'macosx')]/.." />
+    <xsl:template match="sdk:extra">
+        <xsl:variable name="archive" select="./sdk:archives/sdk:archive" />
         <xsl:text>  url '</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
             <xsl:text>http://dl-ssl.google.com/android/repository/</xsl:text>

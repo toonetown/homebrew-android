@@ -3,6 +3,7 @@
 #!/bin/bash
 REPO_URL="${REPO_URL:-http://dl-ssl.google.com/android/repository/repository-10.xml}"
 SYSIMG_URL="${SYSIMG_URL:-http://dl-ssl.google.com/android/repository/sys-img/android/sys-img.xml}"
+EXTRAS_URL="${EXTRAS_URL:-http://dl-ssl.google.com/android/repository/addon.xml}"
 
 # Set up our variables
 cd "$(dirname "${0}")"
@@ -23,8 +24,10 @@ trap 'rm -rf "${WORK_DIR}"' EXIT
 
 REPO_FILE="${WORK_DIR}/repo.xml"
 SYSIMG_FILE="${WORK_DIR}/sysimg.xml"
+EXTRAS_FILE="${WORK_DIR}/extras.xml"
 curl -fsSL "${REPO_URL}" -o "${REPO_FILE}"
 curl -fsSL "${SYSIMG_URL}" -o "${SYSIMG_FILE}"
+curl -fsSL "${EXTRAS_URL}" -o "${EXTRAS_FILE}"
 
 function template { cat "${TEMPLATE_DIR}/${1}.tpl"; }
 function apply_xsl { xsltproc ${3} "${XSL_DIR}/${1}.xsl" "${2}"; }
@@ -62,7 +65,7 @@ gen_tool docs           || exit $?
 # Generate a platform formula for each one in the repository
 for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
     API_PARAM="--param api-level ${plat}"
-    
+
     # Create the main formula for this platform
     template platform | \
         do_replace "ARCHIVE_INFO" "$(apply_xsl platform "${REPO_FILE}" "${API_PARAM}")" | \
@@ -72,14 +75,14 @@ for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
     # Create the sources and samples formulas for this platform (if it has them)
     gen_sdk_extra ${plat} sources || exit $?
     gen_sdk_extra ${plat} samples || exit $?
-    
+
     # Pull up the images for this platform
     for img in $(apply_xsl list-sysimgs "${SYSIMG_FILE}" "${API_PARAM}"); do
         LONG_ABI="$(echo ${img} | cut -d'|' -f1)"
         SHORT_ABI="$(echo ${img} | cut -d'|' -f2)"
         LOWER_ABI="$(echo "${SHORT_ABI}" | tr '[:upper:]' '[:lower:]')"
         NAME="android-${plat}-sysimg-${LOWER_ABI}"
-        
+
         ABI_PARAM="${API_PARAM} --stringparam abi ${LONG_ABI}"
         template sysimg | \
             do_replace "ARCHIVE_INFO" "$(apply_xsl sysimg "${SYSIMG_FILE}" "${ABI_PARAM}")" | \
@@ -88,11 +91,27 @@ for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
             do_replace "LONG_ABI" "${LONG_ABI}" \
                 > "${FORMULA_DIR}/${NAME}.rb" || exit $?
 
-        if [ -n "$(echo "${img}" | cut -d'|' -f3)" ]; then 
+        if [ -n "$(echo "${img}" | cut -d'|' -f3)" ]; then
             sed_inplace "s|\(%%SYSIMG%%\)|    'toonetown/android/${NAME}',$(printf '\a')\1|" \
                         "${FORMULA_DIR}/android-${plat}.rb"
         fi
     done
     # Now, remove the images tag for the platform
     remove_line "%%SYSIMG%%" "${FORMULA_DIR}/android-${plat}.rb"
+done
+
+# Generate the extra formulas
+for extra in $(apply_xsl list-extras "${EXTRAS_FILE}"); do
+    EXTRA_VENDOR="$(echo ${extra} | cut -d'|' -f1)"
+    EXTRA_PATH="$(echo ${extra} | cut -d'|' -f2)"
+    EXTRA_VENDOR_NAME="$(echo ${EXTRA_VENDOR:0:1} | tr '[:lower:]' '[:upper:]')${EXTRA_VENDOR:1}"
+    EXTRA_PATH_NAME="$(echo ${EXTRA_PATH:0:1} | tr '[:lower:]' '[:upper:]')${EXTRA_PATH:1}"
+    EXTRA_PARAMS="--stringparam vendor ${EXTRA_VENDOR} --stringparam path ${EXTRA_PATH}"
+    template extras | \
+        do_replace "ARCHIVE_INFO" "$(apply_xsl extras "${EXTRAS_FILE}" "${EXTRA_PARAMS}")" | \
+        do_replace "VENDOR_NAME" "${EXTRA_VENDOR_NAME}" | \
+        do_replace "PATH_NAME" "${EXTRA_PATH_NAME}" | \
+        do_replace "VENDOR" "${EXTRA_VENDOR}" | \
+        do_replace "PATH" "${EXTRA_PATH}" \
+            > "${FORMULA_DIR}/${EXTRA_VENDOR}-${EXTRA_PATH}.rb"  
 done

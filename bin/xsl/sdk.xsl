@@ -18,10 +18,14 @@
         
         <xsl:text>  version '</xsl:text>
         <xsl:value-of select="./sdk:revision/sdk:major" />
-        <xsl:text>.</xsl:text>
-        <xsl:value-of select="./sdk:revision/sdk:minor" />
-        <xsl:text>.</xsl:text>
-        <xsl:value-of select="./sdk:revision/sdk:micro" />        
+        <xsl:if test="./sdk:revision/sdk:minor">
+            <xsl:text>.</xsl:text>
+            <xsl:value-of select="./sdk:revision/sdk:minor" />
+            <xsl:if test="./sdk:revision/sdk:micro">
+                <xsl:text>.</xsl:text>
+                <xsl:value-of select="./sdk:revision/sdk:micro" />
+            </xsl:if>
+        </xsl:if>
         <xsl:text>'&#10;</xsl:text>
 
         <xsl:text>  </xsl:text>
