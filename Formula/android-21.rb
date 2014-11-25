@@ -9,6 +9,7 @@ class Android21 < AndroidPlatformFormula
 
   # Dependencies for docs, sources, samples, and system images
   sources [ 'toonetown/android/android-21-sources' ]
+  samples [ 'toonetown/android/android-21-samples' ]
   sysimg  [
     'toonetown/android/android-21-sysimg-armv7',
     'toonetown/android/android-21-sysimg-i386',
