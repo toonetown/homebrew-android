@@ -4,9 +4,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidDocs < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/docs-21_r01.zip'
-  version '21-r1'
-  sha1 '1c71f97ffb97e77120c1a73c8a29d3783c65f86d'
+  url 'http://dl-ssl.google.com/android/repository/docs-22_r01.zip'
+  version '22-r1'
+  sha1 '419791c49fa0a305a06966fd1734cf5b0498ea1a'
 
   depends_on "toonetown/android/android-sdk"
 
