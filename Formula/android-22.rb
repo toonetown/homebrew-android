@@ -2,9 +2,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-sdk-formula')
 
 class Android22 < AndroidPlatformFormula
-  url 'http://dl-ssl.google.com/android/repository/android-22_r01.zip'
-  version '1'
-  sha1 '6df7006cf184df4e7928d7e28dadf7567503d6f7'
+  url 'http://dl-ssl.google.com/android/repository/android-22_r02.zip'
+  version '2'
+  sha1 '5d1bd10fea962b216a0dece1247070164760a9fc'
   api_version '22'
 
   # Dependencies for docs, sources, samples, and system images
