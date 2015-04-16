@@ -9,7 +9,5 @@ class Android12 < AndroidPlatformFormula
 
   # Dependencies for docs, sources, samples, and system images
   samples [ 'toonetown/android/android-12-samples' ]
-  sysimg  [
-  ]
 
 end

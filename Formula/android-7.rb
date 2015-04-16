@@ -9,7 +9,5 @@ class Android7 < AndroidPlatformFormula
 
   # Dependencies for docs, sources, samples, and system images
   samples [ 'toonetown/android/android-7-samples' ]
-  sysimg  [
-  ]
 
 end

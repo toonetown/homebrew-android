@@ -9,7 +9,5 @@ class Android11 < AndroidPlatformFormula
 
   # Dependencies for docs, sources, samples, and system images
   samples [ 'toonetown/android/android-11-samples' ]
-  sysimg  [
-  ]
 
 end

@@ -8,7 +8,5 @@ class Android3 < AndroidPlatformFormula
   api_version '3'
 
   # Dependencies for docs, sources, samples, and system images
-  sysimg  [
-  ]
 
 end

@@ -10,8 +10,5 @@ class Android14 < AndroidPlatformFormula
   # Dependencies for docs, sources, samples, and system images
   sources [ 'toonetown/android/android-14-sources' ]
   samples [ 'toonetown/android/android-14-samples' ]
-  sysimg  [
-    'toonetown/android/android-14-sysimg-armv7',
-  ]
 
 end

@@ -9,7 +9,5 @@ class Android13 < AndroidPlatformFormula
 
   # Dependencies for docs, sources, samples, and system images
   samples [ 'toonetown/android/android-13-samples' ]
-  sysimg  [
-  ]
 
 end

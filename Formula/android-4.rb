@@ -8,7 +8,5 @@ class Android4 < AndroidPlatformFormula
   api_version '4'
 
   # Dependencies for docs, sources, samples, and system images
-  sysimg  [
-  ]
 
 end
