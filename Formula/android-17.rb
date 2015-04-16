@@ -7,12 +7,8 @@ class Android17 < AndroidPlatformFormula
   sha1 'dbe14101c06e6cdb34e300393e64e64f8c92168a'
   api_version '17'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   sources [ 'toonetown/android/android-17-sources' ]
   samples [ 'toonetown/android/android-17-samples' ]
-  sysimg  [
-    'toonetown/android/android-17-sysimg-armv7',
-    'toonetown/android/android-17-sysimg-i386',
-  ]
 
 end

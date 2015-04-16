@@ -7,10 +7,8 @@ class Android20 < AndroidPlatformFormula
   sha1 'a9251f8a3f313ab05834a07a963000927637e01d'
   api_version '20'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   sources [ 'toonetown/android/android-20-sources' ]
   samples [ 'toonetown/android/android-20-samples' ]
-  sysimg  [
-  ]
 
 end

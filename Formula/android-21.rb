@@ -7,12 +7,8 @@ class Android21 < AndroidPlatformFormula
   sha1 '53536556059bb29ae82f414fd2e14bc335a4eb4c'
   api_version '21'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   sources [ 'toonetown/android/android-21-sources' ]
   samples [ 'toonetown/android/android-21-samples' ]
-  sysimg  [
-    'toonetown/android/android-21-sysimg-armv7',
-    'toonetown/android/android-21-sysimg-i386',
-  ]
 
 end

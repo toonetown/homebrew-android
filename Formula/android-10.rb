@@ -7,10 +7,7 @@ class Android10 < AndroidPlatformFormula
   sha1 '887e37783ec32f541ea33c2c649dda648e8e6fb3'
   api_version '10'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   samples [ 'toonetown/android/android-10-samples' ]
-  sysimg  [
-    'toonetown/android/android-10-sysimg-i386',
-  ]
 
 end

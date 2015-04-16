@@ -7,12 +7,8 @@ class Android19 < AndroidPlatformFormula
   sha1 '2ff20d89e68f2f5390981342e009db5a2d456aaa'
   api_version '19'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   sources [ 'toonetown/android/android-19-sources' ]
   samples [ 'toonetown/android/android-19-samples' ]
-  sysimg  [
-    'toonetown/android/android-19-sysimg-armv7',
-    'toonetown/android/android-19-sysimg-i386',
-  ]
 
 end

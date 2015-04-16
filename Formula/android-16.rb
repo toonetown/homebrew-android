@@ -7,12 +7,8 @@ class Android16 < AndroidPlatformFormula
   sha1 '12a5ce6235a76bc30f62c26bda1b680e336abd07'
   api_version '16'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   sources [ 'toonetown/android/android-16-sources' ]
   samples [ 'toonetown/android/android-16-samples' ]
-  sysimg  [
-    'toonetown/android/android-16-sysimg-armv7',
-    'toonetown/android/android-16-sysimg-i386',
-  ]
 
 end

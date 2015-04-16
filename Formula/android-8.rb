@@ -7,9 +7,7 @@ class Android8 < AndroidPlatformFormula
   sha1 '231262c63eefdff8fd0386e9ccfefeb27a8f9202'
   api_version '8'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   samples [ 'toonetown/android/android-8-samples' ]
-  sysimg  [
-  ]
 
 end

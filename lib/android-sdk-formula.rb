@@ -44,16 +44,12 @@ class AndroidPlatformFormula < AndroidSdkFormula
       cls.option "with-samples", "Includes the samples for the platform"
       cls.build.without? "samples" or cls.samples.each { |d| cls.depends_on d }
     end
-    if cls.sysimg and not cls.sysimg.empty?
-      cls.option "without-sysimg", "Does not include the standard system images"
-      cls.build.without? "sysimg" or cls.sysimg.each { |d| cls.depends_on d }
-    end
 
     super
   end
 
   class << self
-    attr_rw :sources, :samples, :sysimg
+    attr_rw :sources, :samples
   end
 end
 
@@ -77,6 +73,7 @@ class AndroidSysimgFormula < AndroidToolFormula
     cls.depends_on "toonetown/android/android-sdk"
     cls.depends_on "toonetown/android/android-platform-tools"
     cls.depends_on "toonetown/android/android-build-tools"
+    cls.depends_on "toonetown/android/android-#{cls.api_version}"
 
     super
   end

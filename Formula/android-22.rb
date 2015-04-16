@@ -7,12 +7,8 @@ class Android22 < AndroidPlatformFormula
   sha1 '5d1bd10fea962b216a0dece1247070164760a9fc'
   api_version '22'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   sources [ 'toonetown/android/android-22-sources' ]
   samples [ 'toonetown/android/android-22-samples' ]
-  sysimg  [
-    'toonetown/android/android-22-sysimg-i386',
-    'toonetown/android/android-22-sysimg-armv7',
-  ]
 
 end
