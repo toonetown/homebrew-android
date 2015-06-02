@@ -4,9 +4,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidM2repository < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/android_m2repository_r14.zip'
-  version '14'
-  sha1 '0011dfe1473ccdfb1a533a19cad152c59dcd6b45'
+  url 'http://dl-ssl.google.com/android/repository/android_m2repository_r15.zip'
+  version '15'
+  sha1 '2c51feb406ce3c7e09db8339a0d680beb91b8bf1'
   depends_on "toonetown/android/android-sdk"
 
   def install

@@ -6,7 +6,7 @@
     <xsl:param name="abi" />
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-sys-img">
-        <xsl:for-each select="sdk:system-image">
+        <xsl:for-each select="sdk:system-image[not(sdk:obsolete) and string(sdk:codename) = '']">
             <xsl:if test="sdk:api-level = $api-level and sdk:abi = $abi">
                 <xsl:apply-templates select="." />
             </xsl:if>

@@ -4,7 +4,7 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/repository/10">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
-        <xsl:apply-templates select="sdk:platform-tool" />
+        <xsl:apply-templates select="sdk:platform-tool[not(sdk:revision/sdk:preview)]" />
     </xsl:template>
 
     <xsl:template match="sdk:platform-tool">

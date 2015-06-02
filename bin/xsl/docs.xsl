@@ -4,7 +4,7 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/repository/10">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
-        <xsl:apply-templates select="sdk:doc" />
+        <xsl:apply-templates select="sdk:doc[string(sdk:codename) = '']" />
     </xsl:template>
 
     <xsl:template match="sdk:doc">

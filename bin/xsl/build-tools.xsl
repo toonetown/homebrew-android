@@ -4,7 +4,7 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/repository/10">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
-        <xsl:for-each select="sdk:build-tool">
+        <xsl:for-each select="sdk:build-tool[not(sdk:revision/sdk:preview)]">
             <xsl:sort select="./sdk:revision/sdk:major" data-type="number" order="descending" />
             <xsl:sort select="./sdk:revision/sdk:minor" data-type="number" order="descending" />
             <xsl:sort select="./sdk:revision/sdk:micro" data-type="number" order="descending" />
