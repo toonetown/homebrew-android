@@ -2,9 +2,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-sdk-formula')
 
 class Android17SysimgI386 < AndroidSysimgFormula
-  url 'https://dl-ssl.google.com/android/repository/sys-img/android/sysimg_x86-17_r01.zip'
-  version '1'
-  sha1 'ddb3313e8dcd07926003f7b828eafea1115ea35b'
+  url 'http://dl-ssl.google.com/android/repository/sys-img/android/sysimg_x86-17_r02.zip'
+  version '2'
+  sha1 'bd8c7c5411431af7e051cbe961be430fc31e773d'
   api_version '17'
   abi 'x86'
 end
