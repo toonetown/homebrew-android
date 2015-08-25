@@ -11,6 +11,14 @@ class %%VENDOR_NAME%%%%PATH_NAME%% < AndroidToolFormula
     (prefix/"extras/%%VENDOR%%/%%PATH%%").install Dir["*"]
     install_tools prefix/"extras/%%VENDOR%%/%%PATH%%"
 
+    srcProp = prefix/"extras/%%VENDOR%%/%%PATH%%/source.properties"
+    srcProp.delete if srcProp.exist?
+    srcProp.write <<-EOS.undent
+      Extra.VendorId=%%VENDOR%%
+      Extra.Path=%%PATH%%
+      Pkg.Revision=#{version}
+    EOS
+
     link_sdk_dir "extras/%%VENDOR%%"
   end
   

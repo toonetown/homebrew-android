@@ -13,6 +13,14 @@ class AndroidM2repository < AndroidToolFormula
     (prefix/"extras/android/m2repository").install Dir["*"]
     install_tools prefix/"extras/android/m2repository"
 
+    srcProp = prefix/"extras/android/m2repository/source.properties"
+    srcProp.delete if srcProp.exist?
+    srcProp.write <<-EOS.undent
+      Extra.VendorId=android
+      Extra.Path=m2repository
+      Pkg.Revision=#{version}
+    EOS
+
     link_sdk_dir "extras/android"
   end
   

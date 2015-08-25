@@ -4,7 +4,7 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/addon/7">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-addon">
-        <xsl:apply-templates select="sdk:extra[sdk:vendor-id = 'android']" />
+        <xsl:apply-templates select="sdk:extra" />
     </xsl:template>
 
     <xsl:template match="sdk:extra">

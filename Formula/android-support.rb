@@ -13,6 +13,14 @@ class AndroidSupport < AndroidToolFormula
     (prefix/"extras/android/support").install Dir["*"]
     install_tools prefix/"extras/android/support"
 
+    srcProp = prefix/"extras/android/support/source.properties"
+    srcProp.delete if srcProp.exist?
+    srcProp.write <<-EOS.undent
+      Extra.VendorId=android
+      Extra.Path=support
+      Pkg.Revision=#{version}
+    EOS
+
     link_sdk_dir "extras/android"
   end
   

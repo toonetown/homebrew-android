@@ -9,6 +9,5 @@ To use, just `brew tap toonetown/android`.  You may want to remove any duplicate
 then run `brew tap --repair` so you can install using shortcuts (and not have to specify the full formula name).
 
 Only the latest version of the build-tools will install - and it will be kept up-to-date.  Obsolete versions are not
-included.  Currently only the stuff from the main repository (repository-11.xml) and sys-img.xml are included.  Only
-the "android" extras (not the google vendor extras) are auto-generated.  I doubt I will ever do glass or Android TV 
-repositories (because I personally don't use them).
+included.  Currently only the stuff from the main repository (repository-11.xml) and sys-img.xml are included.  I doubt
+I will ever do glass or Android TV repositories (because I personally don't use them).

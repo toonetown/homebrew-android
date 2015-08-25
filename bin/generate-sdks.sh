@@ -105,7 +105,9 @@ for extra in $(apply_xsl list-extras "${EXTRAS_FILE}"); do
     EXTRA_VENDOR="$(echo ${extra} | cut -d'|' -f1)"
     EXTRA_PATH="$(echo ${extra} | cut -d'|' -f2)"
     EXTRA_VENDOR_NAME="$(echo ${EXTRA_VENDOR:0:1} | tr '[:lower:]' '[:upper:]')${EXTRA_VENDOR:1}"
-    EXTRA_PATH_NAME="$(echo ${EXTRA_PATH:0:1} | tr '[:lower:]' '[:upper:]')${EXTRA_PATH:1}"
+    EXTRA_PATH_NAME="$(echo "$(echo ${EXTRA_PATH:0:1} | tr '[:lower:]' '[:upper:]')${EXTRA_PATH:1}" | \
+                            perl -pe 's/_(.)/\u$1/g' | sed -e "s/^${EXTRA_VENDOR_NAME}//g")"
+    EXTRA_FILE_NAME="${EXTRA_VENDOR}-$(echo "${EXTRA_PATH}" | tr '_' '-' | sed -e "s/^${EXTRA_VENDOR}-//g")"
     EXTRA_PARAMS="--stringparam vendor ${EXTRA_VENDOR} --stringparam path ${EXTRA_PATH}"
     template extras | \
         do_replace "ARCHIVE_INFO" "$(apply_xsl extras "${EXTRAS_FILE}" "${EXTRA_PARAMS}")" | \
@@ -113,5 +115,5 @@ for extra in $(apply_xsl list-extras "${EXTRAS_FILE}"); do
         do_replace "PATH_NAME" "${EXTRA_PATH_NAME}" | \
         do_replace "VENDOR" "${EXTRA_VENDOR}" | \
         do_replace "PATH" "${EXTRA_PATH}" \
-            > "${FORMULA_DIR}/${EXTRA_VENDOR}-${EXTRA_PATH}.rb"  
+            > "${FORMULA_DIR}/${EXTRA_FILE_NAME}.rb"  
 done
