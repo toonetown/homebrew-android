@@ -56,11 +56,12 @@ function gen_sdk_extra {
     fi
 }
 
-# Create the SDK, platform-tools, build-tools and docs formulas
+# Create the SDK, platform-tools, build-tools, docs, and NDK formulas
 gen_tool sdk            || exit $?
 gen_tool platform-tools || exit $?
 gen_tool build-tools    || exit $?
 gen_tool docs           || exit $?
+gen_tool ndk            || exit $?
 
 # Generate a platform formula for each one in the repository
 for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do

@@ -7,11 +7,8 @@ require 'formula'
 class AndroidNdkFormula < Formula
   def initialize(*)
     cls=self.class
-    cls.extension or raise FormulaSpecificationError, "NDK requires an extension"
 
     cls.homepage 'http://developer.android.com/sdk/ndk/index.html'
-    cls.url "http://dl.google.com/android/ndk/android-ndk-#{cls.version}-darwin-#{cls.plat}.#{cls.extension}"
-    cls.keg_only 'NDKs are not linked by default so you can install multiple versions'
     cls.depends_on 'toonetown/android/android-sdk'
     cls.depends_on "toonetown/android/android-platform-tools"
     cls.depends_on "toonetown/android/android-build-tools"
@@ -20,15 +17,8 @@ class AndroidNdkFormula < Formula
 
   # An installer which will perform the appropriate installation steps
   def install
-    cls=self.class
     bin.mkpath
-    if cls.extension == "bin"
-      system "chmod", "a+x", "./android-ndk-#{cls.version}-darwin-#{cls.plat}.bin"
-      system "./android-ndk-#{cls.version}-darwin-#{cls.plat}.bin"
-      prefix.install Dir["android-ndk-#{cls.version}/*"]
-    else
-      prefix.install Dir['*']
-    end
+    prefix.install Dir['*']
 
     # Create a dummy script to launch the ndk apps
     ndk_exec = prefix+'ndk-exec.sh'
@@ -55,16 +45,5 @@ class AndroidNdkFormula < Formula
     For more documentation on Android NDK, please check:
       #{prefix}/docs
     EOS
-  end
-  
-  class << self
-    attr_rw :extension
-    
-    def plat; MacOS.prefer_64_bit? ? 'x86_64' : 'x86'; end
-    
-    def sha1 sha_map={}
-      @sha_map ||= sha_map
-      super MacOS.prefer_64_bit? ? @sha_map[:x86_64] : @sha_map[:x86]
-    end
-  end
+  end  
 end
