@@ -4,9 +4,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidSupport < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/support_r23.zip'
-  version '23.0.0'
-  sha1 'ebdbd0c1c1b051d5ceac55e6f0bd59775707214c'
+  url 'http://dl-ssl.google.com/android/repository/support_r22.2.1.zip'
+  version '22.2.1'
+  sha1 '941c54a43c1054f09b09314f1e70b449faffb7cd'
   depends_on "toonetown/android/android-sdk"
 
   def install
