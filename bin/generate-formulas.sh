@@ -118,3 +118,8 @@ for extra in $(apply_xsl list-extras "${EXTRAS_FILE}"); do
         do_replace "PATH" "${EXTRA_PATH}" \
             > "${FORMULA_DIR}/${EXTRA_FILE_NAME}.rb"  
 done
+
+# Copy (and stub in) our fb-adb formula
+brew cat Homebrew/homebrew/fb-adb | \
+    sed -e 's|depends_on "android|depends_on "toonetown/android/android|g' \
+        > Formula/fb-adb.rb
