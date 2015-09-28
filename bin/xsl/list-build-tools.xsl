@@ -4,11 +4,15 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/repository/11">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
-        <xsl:apply-templates select="sdk:platform[string(sdk:codename) = '']" />
+        <xsl:apply-templates select="sdk:build-tool[not(sdk:revision/sdk:preview)]" />
     </xsl:template>
 
-    <xsl:template match="sdk:platform">
-        <xsl:value-of select="./sdk:api-level" />
+    <xsl:template match="sdk:build-tool">
+        <xsl:value-of select="./sdk:revision/sdk:major" />
+        <xsl:text>.</xsl:text>
+        <xsl:value-of select="./sdk:revision/sdk:minor" />
+        <xsl:text>.</xsl:text>
+        <xsl:value-of select="./sdk:revision/sdk:micro" />
         <xsl:text> </xsl:text>
     </xsl:template>
 </xsl:stylesheet>

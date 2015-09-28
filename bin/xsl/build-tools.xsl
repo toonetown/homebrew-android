@@ -5,10 +5,13 @@
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
         <xsl:for-each select="sdk:build-tool[not(sdk:revision/sdk:preview)]">
-            <xsl:sort select="./sdk:revision/sdk:major" data-type="number" order="descending" />
-            <xsl:sort select="./sdk:revision/sdk:minor" data-type="number" order="descending" />
-            <xsl:sort select="./sdk:revision/sdk:micro" data-type="number" order="descending" />
-            <xsl:if test="position() = 1"><xsl:apply-templates select="." /></xsl:if>
+            <xsl:if test="sdk:revision/sdk:major = $tool-major">
+                <xsl:if test="sdk:revision/sdk:minor = $tool-minor">
+                    <xsl:if test="sdk:revision/sdk:micro = $tool-micro">
+                        <xsl:apply-templates select="." />
+                    </xsl:if>
+                </xsl:if>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 

@@ -7,7 +7,7 @@ class Android11 < AndroidPlatformFormula
   sha1 '2c7d4bd13f276e76f6bbd87315fe27aba351dd37'
   api_version '11'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   samples [ 'toonetown/android/android-11-samples' ]
 
 end

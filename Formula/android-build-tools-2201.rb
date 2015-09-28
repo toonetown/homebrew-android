@@ -3,8 +3,10 @@
 require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
-class AndroidBuildTools%%BUILD_TOOL_VERSION%% < AndroidToolFormula
-%%ARCHIVE_INFO%%
+class AndroidBuildTools2201 < AndroidToolFormula
+  url 'http://dl-ssl.google.com/android/repository/build-tools_r22.0.1-macosx.zip'
+  version '22.0.1'
+  sha1 '53dad7f608e01d53b17176ba11165acbfccc5bbf'
 
   depends_on "toonetown/android/android-sdk"
   depends_on "toonetown/android/android-platform-tools"

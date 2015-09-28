@@ -5,7 +5,7 @@
     <xsl:param name="api-level" select="0"/>
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
-        <xsl:for-each select="sdk:sample[not(sdk:obsolete) and string(sdk:codename) = '']">
+        <xsl:for-each select="sdk:sample[string(sdk:codename) = '']">
             <xsl:if test="sdk:api-level = $api-level">
                 <xsl:text>yes</xsl:text>
             </xsl:if>

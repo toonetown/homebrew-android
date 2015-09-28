@@ -11,7 +11,6 @@ class AndroidNdkFormula < Formula
     cls.homepage 'http://developer.android.com/sdk/ndk/index.html'
     cls.depends_on 'toonetown/android/android-sdk'
     cls.depends_on "toonetown/android/android-platform-tools"
-    cls.depends_on "toonetown/android/android-build-tools"
     super
   end
 

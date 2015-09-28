@@ -7,7 +7,7 @@ class Android12 < AndroidPlatformFormula
   sha1 '4a50a6679cd95bb68bb5fc032e754cd7c5e2b1bf'
   api_version '12'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   samples [ 'toonetown/android/android-12-samples' ]
 
 end

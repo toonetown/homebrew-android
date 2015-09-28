@@ -8,6 +8,5 @@ are used to generate the SDK formulas from the "real" android repository URLs (j
 To use, just `brew tap toonetown/android`.  You may also want to pin the default formulas to read from this tap, so
 run `brew tap-pin toonetown/android` afterwards.
 
-Only the latest version of the build-tools will install - and it will be kept up-to-date.  Obsolete versions are not
-included.  Currently only the stuff from the main repository (repository-11.xml) and sys-img.xml are included.  I doubt
-I will ever do glass or Android TV repositories (because I personally don't use them).
+Currently only the stuff from the main repository (repository-11.xml) and sys-img.xml are included.  I doubt I will
+ever do glass or Android TV repositories (because I personally don't use them).

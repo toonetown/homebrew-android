@@ -56,12 +56,25 @@ function gen_sdk_extra {
     fi
 }
 
-# Create the SDK, platform-tools, build-tools, docs, and NDK formulas
+# Create the SDK, platform-tools, docs, and NDK formulas
 gen_tool sdk            || exit $?
 gen_tool platform-tools || exit $?
-gen_tool build-tools    || exit $?
 gen_tool docs           || exit $?
 gen_tool ndk            || exit $?
+
+# Generate each version of the build tools
+for buildTool in $(apply_xsl list-build-tools "${REPO_FILE}"); do
+    buildToolVersion=$(echo "${buildTool}" | sed -e 's/\.//g')
+    VERSION_PARAM="--param tool-major $(echo "${buildTool}" | cut -d'.' -f1) 
+                   --param tool-minor $(echo "${buildTool}" | cut -d'.' -f2) 
+                   --param tool-micro $(echo "${buildTool}" | cut -d'.' -f3)"
+
+    # Create the formula for this version
+    template build-tools | \
+        do_replace "ARCHIVE_INFO" "$(apply_xsl build-tools "${REPO_FILE}" "${VERSION_PARAM}")" | \
+        do_replace "BUILD_TOOL_VERSION" "${buildToolVersion}" \
+        > "${FORMULA_DIR}/android-build-tools-${buildToolVersion}.rb" || exit $?
+done
 
 # Generate a platform formula for each one in the repository
 for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
@@ -122,4 +135,4 @@ done
 # Copy (and stub in) our fb-adb formula
 brew cat Homebrew/homebrew/fb-adb | \
     sed -e 's|depends_on "android|depends_on "toonetown/android/android|g' \
-        > Formula/fb-adb.rb
+        > "${FORMULA_DIR}/fb-adb.rb"

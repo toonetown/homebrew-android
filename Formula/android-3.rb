@@ -7,6 +7,6 @@ class Android3 < AndroidPlatformFormula
   sha1 'd3a67c2369afa48b6c3c7624de5031c262018d1e'
   api_version '3'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
 
 end

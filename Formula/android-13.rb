@@ -7,7 +7,7 @@ class Android13 < AndroidPlatformFormula
   sha1 '6189a500a8c44ae73a439604363de93591163cd9'
   api_version '13'
 
-  # Dependencies for docs, sources, samples, and system images
+  # Dependencies for docs, sources, and samples
   samples [ 'toonetown/android/android-13-samples' ]
 
 end
