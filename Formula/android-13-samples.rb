@@ -6,4 +6,6 @@ class Android13Samples < AndroidSamplesFormula
   version '01'
   sha1 '078bcf1abc1cb8921f3fa482c252963a782bed60'
   api_version '13'
+  target_directory 'samples'
+  target_name      'android'
 end

@@ -7,4 +7,5 @@ class Android17SysimgMips < AndroidSysimgFormula
   sha1 'f0c6e153bd584c29e51b5c9723cfbf30f996a05d'
   api_version '17'
   abi 'mips'
+  sysimg_tag ''
 end

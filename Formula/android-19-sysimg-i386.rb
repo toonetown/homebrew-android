@@ -7,4 +7,5 @@ class Android19SysimgI386 < AndroidSysimgFormula
   sha1 '3782f3ebac5e54b3de454570add401989515ffca'
   api_version '19'
   abi 'x86'
+  sysimg_tag ''
 end

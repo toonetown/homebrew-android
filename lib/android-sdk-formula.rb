@@ -10,6 +10,7 @@ class AndroidSdkFormula < AndroidToolFormula
     cls=self.class
     cls.api_version or raise FormulaSpecificationError, "Requires an api_version"
     cls.target_directory or raise FormulaSpecificationError, "Requires a target_directory"
+    cls.target_name or raise FormulaSpecificationError, "Requires a target_name"
 
     cls.depends_on "toonetown/android/android-sdk"
     cls.depends_on "toonetown/android/android-platform-tools"
@@ -19,13 +20,18 @@ class AndroidSdkFormula < AndroidToolFormula
 
   def install
     cls=self.class
-    (prefix/"#{cls.target_directory}/android-#{cls.api_version}").install Dir["*"]
-    install_tools prefix/"#{cls.target_directory}/android-#{cls.api_version}"
+    (prefix/"#{cls.target_directory}/#{cls.target_name}-#{cls.api_version}").install Dir["*"]
+    install_tools prefix/"#{cls.target_directory}/#{cls.target_name}-#{cls.api_version}"
+    if cls.src_properties and not cls.src_properties.empty?
+      srcProp = prefix/"#{cls.target_directory}/#{cls.target_name}-#{cls.api_version}/source.properties"
+      srcProp.delete if srcProp.exist?
+      srcProp.write cls.src_properties
+    end
     link_sdk_dir cls.target_directory
   end
 
   class << self
-    attr_rw :api_version, :target_directory
+    attr_rw :api_version, :target_directory, :target_name, :src_properties
   end
 end
   
@@ -33,7 +39,6 @@ end
 class AndroidPlatformFormula < AndroidSdkFormula
   def initialize(*)
     cls=self.class
-    cls.target_directory "platforms"
 
     if cls.sources and not cls.sources.empty?
       cls.option "with-sources", "Includes the source for the platform"
@@ -54,12 +59,12 @@ end
 
 # A formula for sources
 class AndroidSourcesFormula < AndroidSdkFormula
-  def initialize(*); self.class.target_directory "sources"; super; end
+  def initialize(*); super; end
 end
 
 # A formula for samples
 class AndroidSamplesFormula < AndroidSdkFormula
-  def initialize(*); self.class.target_directory "samples"; super; end
+  def initialize(*); super; end
 end
 
 # A formula for system images
@@ -68,6 +73,7 @@ class AndroidSysimgFormula < AndroidToolFormula
     cls=self.class
     cls.api_version or raise FormulaSpecificationError, "Requires an api_version"
     cls.abi or raise FormulaSpecificationError, "Requires an abi"
+    cls.sysimg_tag or raise FormulaSpecificationError, "Requires a sysimg_tag"
 
     cls.depends_on "toonetown/android/android-sdk"
     cls.depends_on "toonetown/android/android-platform-tools"
@@ -78,13 +84,18 @@ class AndroidSysimgFormula < AndroidToolFormula
 
   def install
     cls=self.class
-    (prefix/"system-images/android-#{cls.api_version}/#{cls.abi}").install Dir["*"]
-    install_tools prefix/"system-images/android-#{cls.api_version}/#{cls.abi}"
-    link_sdk_dir "system-images/android-#{cls.api_version}"
+    (prefix/"system-images/android-#{cls.api_version}#{cls.sysimg_tag}/#{cls.abi}").install Dir["*"]
+    install_tools prefix/"system-images/android-#{cls.api_version}#{cls.sysimg_tag}/#{cls.abi}"
+    if cls.src_properties and not cls.src_properties.empty?
+      srcProp = prefix/"system-images/android-#{cls.api_version}#{cls.sysimg_tag}/#{cls.abi}/source.properties"
+      srcProp.delete if srcProp.exist?
+      srcProp.write cls.src_properties
+    end
+    link_sdk_dir "system-images/android-#{cls.api_version}#{cls.sysimg_tag}"
   end
 
   class << self
-    attr_rw :api_version, :abi
+    attr_rw :api_version, :abi, :sysimg_tag, :src_properties
   end
 end
 

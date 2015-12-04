@@ -6,6 +6,8 @@ class Android2 < AndroidPlatformFormula
   version '1'
   sha1 'e21dbcff45b7356657449ebb3c7e941be2bb5ebe'
   api_version '2'
+  target_directory 'platforms'
+  target_name      'android'
 
   # Dependencies for docs, sources, and samples
 

@@ -7,4 +7,5 @@ class Android21SysimgArmv7 < AndroidSysimgFormula
   sha1 '0b2e21421d29f48211b5289ca4addfa7f4c7ae5a'
   api_version '21'
   abi 'armeabi-v7a'
+  sysimg_tag ''
 end

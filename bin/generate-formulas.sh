@@ -4,6 +4,7 @@
 REPO_URL="${REPO_URL:-http://dl-ssl.google.com/android/repository/repository-11.xml}"
 SYSIMG_URL="${SYSIMG_URL:-http://dl-ssl.google.com/android/repository/sys-img/android/sys-img.xml}"
 EXTRAS_URL="${EXTRAS_URL:-http://dl-ssl.google.com/android/repository/addon.xml}"
+GAPIS_SYSIMG_URL="${GAPIS_SYSIMG_URL:-http://dl.google.com/android/repository/sys-img/google_apis/sys-img.xml}"
 HAXM_URL="${HAXM_URL:-http://dl.google.com/android/repository/extras/intel/addon.xml}"
 
 # Set up our variables
@@ -29,10 +30,12 @@ trap 'rm -rf "${WORK_DIR}"' EXIT
 REPO_FILE="${WORK_DIR}/repo.xml"
 SYSIMG_FILE="${WORK_DIR}/sysimg.xml"
 EXTRAS_FILE="${WORK_DIR}/extras.xml"
+GAPIS_SYSIMG_FILE="${WORK_DIR}/gapis_sysimg.xml"
 HAXM_FILE="${WORK_DIR}/haxm.xml"
 curl -fsSL "${REPO_URL}" -o "${REPO_FILE}"
 curl -fsSL "${SYSIMG_URL}" -o "${SYSIMG_FILE}"
 curl -fsSL "${EXTRAS_URL}" -o "${EXTRAS_FILE}"
+curl -fsSL "${GAPIS_SYSIMG_URL}" -o "${GAPIS_SYSIMG_FILE}"
 curl -fsSL "${HAXM_URL}" -o "${HAXM_FILE}"
 
 function template { cat "${TEMPLATE_DIR}/${1}.tpl"; }
@@ -116,8 +119,6 @@ for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
                         "${FORMULA_DIR}/android-${plat}.rb"
         fi
     done
-    # Now, remove the images tag for the platform
-    remove_line "%%SYSIMG%%" "${FORMULA_DIR}/android-${plat}.rb"
 done
 
 # Generate the extra formulas
@@ -137,6 +138,39 @@ for extra in $(apply_xsl list-extras "${EXTRAS_FILE}"); do
         do_replace "PATH" "${EXTRA_PATH}" \
             > "${FORMULA_DIR}/${EXTRA_FILE_NAME}.rb"  
 done
+
+# Generate the Google API addons
+for plat in $(apply_xsl list-gapis "${EXTRAS_FILE}"); do
+    API_PARAM="--param api-level ${plat}"
+
+    # Create the main formula for this api level
+    template gapis | \
+        do_replace "ARCHIVE_INFO" "$(apply_xsl gapis "${EXTRAS_FILE}" "${API_PARAM}")" | \
+        do_replace "API_VERSION" "${plat}" \
+        > "${FORMULA_DIR}/google-apis-${plat}.rb" || exit $?
+
+    # Pull up the images for this platform
+    for img in $(apply_xsl list-sysimgs "${GAPIS_SYSIMG_FILE}" "${API_PARAM}"); do
+        LONG_ABI="$(echo ${img} | cut -d'|' -f1)"
+        SHORT_ABI="$(echo ${img} | cut -d'|' -f2)"
+        LOWER_ABI="$(echo "${SHORT_ABI}" | tr '[:upper:]' '[:lower:]')"
+        NAME="google-apis-${plat}-sysimg-${LOWER_ABI}"
+
+        ABI_PARAM="${API_PARAM} --stringparam abi ${LONG_ABI}"
+        template gapis-sysimg | \
+            do_replace "ARCHIVE_INFO" "$(apply_xsl gapis-sysimg "${GAPIS_SYSIMG_FILE}" "${ABI_PARAM}")" | \
+            do_replace "API_VERSION" "${plat}" | \
+            do_replace "SHORT_ABI" "$(echo "${SHORT_ABI}" | tr -d '_')" | \
+            do_replace "LONG_ABI" "${LONG_ABI}" \
+                > "${FORMULA_DIR}/${NAME}.rb" || exit $?
+
+        if [ -n "$(echo "${img}" | cut -d'|' -f3)" ]; then
+            sed_inplace "s|\(%%SYSIMG%%\)|    'toonetown/android/${NAME}',$(printf '\a')\1|" \
+                        "${FORMULA_DIR}/google-apis-${plat}.rb"
+        fi
+    done
+done
+
 
 # Copy (and stub in) our fb-adb formula
 brew cat Homebrew/homebrew/fb-adb | \

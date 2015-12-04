@@ -6,6 +6,8 @@ class Android4 < AndroidPlatformFormula
   version '03'
   sha1 'bdafad44f5df9f127979bdb21a1fdd87ee3cd625'
   api_version '4'
+  target_directory 'platforms'
+  target_name      'android'
 
   # Dependencies for docs, sources, and samples
 

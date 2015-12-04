@@ -6,4 +6,6 @@ class Android18Sources < AndroidSourcesFormula
   version '1'
   sha1 '8b49fdf7433f4881a2bfb559b5dd05d8ec65fb78'
   api_version '18'
+  target_directory 'sources'
+  target_name      'android'
 end

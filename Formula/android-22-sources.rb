@@ -6,4 +6,6 @@ class Android22Sources < AndroidSourcesFormula
   version '1'
   sha1 '98320e13976d11597a4a730a8d203ac9a03ed5a6'
   api_version '22'
+  target_directory 'sources'
+  target_name      'android'
 end
