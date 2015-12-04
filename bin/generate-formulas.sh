@@ -4,6 +4,7 @@
 REPO_URL="${REPO_URL:-http://dl-ssl.google.com/android/repository/repository-11.xml}"
 SYSIMG_URL="${SYSIMG_URL:-http://dl-ssl.google.com/android/repository/sys-img/android/sys-img.xml}"
 EXTRAS_URL="${EXTRAS_URL:-http://dl-ssl.google.com/android/repository/addon.xml}"
+HAXM_URL="${HAXM_URL:-http://dl.google.com/android/repository/extras/intel/addon.xml}"
 
 # Set up our variables
 cd "$(dirname "${0}")"
@@ -16,6 +17,9 @@ cd ->/dev/null
 cd "$(dirname "${0}")/../Formula"
 FORMULA_DIR="$(pwd)"
 cd ->/dev/null
+cd "$(dirname "${0}")/../Casks"
+CASKS_DIR="$(pwd)"
+cd ->/dev/null
 
 WORK_DIR="${TMPDIR}/HomebrewAndroid.$$"
 mkdir -p "${WORK_DIR}"
@@ -25,9 +29,11 @@ trap 'rm -rf "${WORK_DIR}"' EXIT
 REPO_FILE="${WORK_DIR}/repo.xml"
 SYSIMG_FILE="${WORK_DIR}/sysimg.xml"
 EXTRAS_FILE="${WORK_DIR}/extras.xml"
+HAXM_FILE="${WORK_DIR}/haxm.xml"
 curl -fsSL "${REPO_URL}" -o "${REPO_FILE}"
 curl -fsSL "${SYSIMG_URL}" -o "${SYSIMG_FILE}"
 curl -fsSL "${EXTRAS_URL}" -o "${EXTRAS_FILE}"
+curl -fsSL "${HAXM_URL}" -o "${HAXM_FILE}"
 
 function template { cat "${TEMPLATE_DIR}/${1}.tpl"; }
 function apply_xsl { xsltproc ${3} "${XSL_DIR}/${1}.xsl" "${2}"; }
@@ -136,3 +142,12 @@ done
 brew cat Homebrew/homebrew/fb-adb | \
     sed -e 's|depends_on "android|depends_on "toonetown/android/android|g' \
         > "${FORMULA_DIR}/fb-adb.rb"
+
+# Create our android-intel-haxm cask
+for haxm in $(apply_xsl list-extras "${HAXM_FILE}" | head -n1); do
+    template haxm | \
+        do_replace "ARCHIVE_INFO" "$(apply_xsl haxm "${HAXM_FILE}")" | \
+        do_replace "VENDOR" "$(echo ${haxm} | cut -d'|' -f1)" | \
+        do_replace "PATH" "$(echo ${haxm} | cut -d'|' -f2)" \
+            > "${CASKS_DIR}/android-haxm.rb"
+done
