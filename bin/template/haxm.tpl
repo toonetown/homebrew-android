@@ -21,7 +21,7 @@ cask :v1 => 'android-haxm' do
 
   uninstall :script => {
                         :sudo => true,
-                        :must_succeed => true,
+                        :must_succeed => false,
                         :executable => 'silent_install.sh',
                         :args => ['-u']
                        }
