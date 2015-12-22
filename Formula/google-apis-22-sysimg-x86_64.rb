@@ -2,9 +2,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-sdk-formula')
 
 class GoogleApis22SysimgX8664 < AndroidSysimgFormula
-  url 'http://dl.google.com/android/repository/sys-img/google_apis/sysimg_x86_64-22_r02.zip'
-  version '2'
-  sha1 '878197d9908d5661340ff23f2157b919c60559be'
+  url 'http://dl.google.com/android/repository/sys-img/google_apis/sysimg_x86_64-22_r03.zip'
+  version '3'
+  sha1 'cdc6b1dc9c97378199cecd9dfec73f67fa8d3189'
   api_version '22'
   abi 'x86_64'
   sysimg_tag '/google_apis'
