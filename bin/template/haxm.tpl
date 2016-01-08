@@ -1,4 +1,4 @@
-cask :v1 => 'android-haxm' do
+cask 'android-haxm' do
 %%ARCHIVE_INFO%%
   sha256 :no_check
   conflicts_with :cask => 'intel-haxm'

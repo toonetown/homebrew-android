@@ -1,4 +1,4 @@
-cask :v1 => 'android-haxm' do
+cask 'android-haxm' do
   url 'http://dl-ssl.google.com/android/repository/extras/intel/haxm-macosx_r6_0_1.zip'
   version '6.0.1'
   sha256 :no_check
