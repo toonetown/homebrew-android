@@ -28,7 +28,10 @@ class AndroidNdkFormula < Formula
       test -f "$EXEC" && exec "$EXEC" "$@"
     EOS
     ndk_exec.chmod 0755
-    %w[ndk-build ndk-depends ndk-gdb ndk-stack ndk-which].each { |app| bin.install_symlink ndk_exec => app }
+    %w[ndk-build ndk-depends ndk-gdb ndk-stack].each { |app| bin.install_symlink ndk_exec => app }
+    %w[ndk-depends ndk-gdb ndk-stack].each { |prebuilt| 
+      prefix.install_symlink prefix+'prebuilt/darwin-x86_64/bin'+prebuilt => prebuilt
+    }
   end
 
   def caveats; <<-EOS.undent
