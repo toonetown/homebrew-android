@@ -38,6 +38,11 @@ curl -fsSL "${EXTRAS_URL}" -o "${EXTRAS_FILE}"
 curl -fsSL "${GAPIS_SYSIMG_URL}" -o "${GAPIS_SYSIMG_FILE}"
 curl -fsSL "${HAXM_URL}" -o "${HAXM_FILE}"
 
+# Patch incorrect repo file
+cat "${REPO_FILE}" | \
+    sed -e 's/7a6fdc0931ea9fe2713064f04474333369a34d53/a3764714eff7d187c80d989a9bf1ff8ebf5a0dfa/g' \
+        > "${REPO_FILE}.tmp" && mv "${REPO_FILE}.tmp" "${REPO_FILE}" || exit $?
+
 function template { cat "${TEMPLATE_DIR}/${1}.tpl"; }
 function apply_xsl { xsltproc ${3} "${XSL_DIR}/${1}.xsl" "${2}"; }
 function do_replace { sed -e "s|%%${1}%%|$(echo -n "${2}" | tr '\n' '\a')|" | tr '\a' '\n'; }
