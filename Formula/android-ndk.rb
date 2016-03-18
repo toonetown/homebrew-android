@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-ndk-formula')
 
 class AndroidNdk < AndroidNdkFormula
-  url 'http://dl-ssl.google.com/android/repository/android-ndk-r11-darwin-x86_64.zip'
+  url 'http://dl-ssl.google.com/android/repository/android-ndk-r11b-darwin-x86_64.zip'
   version '11'
-  sha1 'a3764714eff7d187c80d989a9bf1ff8ebf5a0dfa'
+  sha1 'c64fb355fec4da57d329ab45bf0aa29a1aec58dc'
 end
