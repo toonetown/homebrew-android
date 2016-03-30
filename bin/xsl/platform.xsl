@@ -17,7 +17,7 @@
         <xsl:param name="archive" />
         <xsl:text>  url '</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
-            <xsl:text>http://dl-ssl.google.com/android/repository/</xsl:text>
+            <xsl:text>https://dl.google.com/android/repository/</xsl:text>
         </xsl:if>
         <xsl:value-of select="$archive/sdk:url" />
         <xsl:text>'&#10;</xsl:text>
@@ -40,6 +40,13 @@
                     <xsl:with-param name="platform" select="." />
                     <xsl:with-param name="archive" 
                                     select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'macosx')]/.." />
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'linux')]">
+                <xsl:call-template name="print-platform">
+                    <xsl:with-param name="platform" select="." />
+                    <xsl:with-param name="archive" 
+                                    select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'linux')]/.." />
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="not(./sdk:archives/sdk:archive/sdk:host-os)">

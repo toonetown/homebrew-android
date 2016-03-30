@@ -1,11 +1,11 @@
 ######
 # A script which updates the formulas for android
 #!/bin/bash
-REPO_URL="${REPO_URL:-http://dl-ssl.google.com/android/repository/repository-11.xml}"
-SYSIMG_URL="${SYSIMG_URL:-http://dl-ssl.google.com/android/repository/sys-img/android/sys-img.xml}"
-EXTRAS_URL="${EXTRAS_URL:-http://dl-ssl.google.com/android/repository/addon.xml}"
-GAPIS_SYSIMG_URL="${GAPIS_SYSIMG_URL:-http://dl.google.com/android/repository/sys-img/google_apis/sys-img.xml}"
-HAXM_URL="${HAXM_URL:-http://dl.google.com/android/repository/extras/intel/addon.xml}"
+REPO_URL="${REPO_URL:-https://dl.google.com/android/repository/repository-11.xml}"
+SYSIMG_URL="${SYSIMG_URL:-https://dl.google.com/android/repository/sys-img/android/sys-img.xml}"
+EXTRAS_URL="${EXTRAS_URL:-https://dl.google.com/android/repository/addon.xml}"
+GAPIS_SYSIMG_URL="${GAPIS_SYSIMG_URL:-https://dl.google.com/android/repository/sys-img/google_apis/sys-img.xml}"
+HAXM_URL="${HAXM_URL:-https://dl.google.com/android/repository/extras/intel/addon.xml}"
 
 # Set up our variables
 cd "$(dirname "${0}")"

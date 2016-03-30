@@ -11,7 +11,7 @@
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive" />
         <xsl:text>  url '</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
-            <xsl:text>http://dl-ssl.google.com/android/repository/</xsl:text>
+            <xsl:text>https://dl.google.com/android/repository/</xsl:text>
         </xsl:if>
         <xsl:value-of select="$archive/sdk:url" />
         <xsl:text>'&#10;</xsl:text>
