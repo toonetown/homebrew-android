@@ -24,19 +24,24 @@ print_usage() {
     echo "Usage: $(basename "${0}") <action> [options...]"                                  >&2
     echo ""                                                                                 >&2
     echo "Available actions:"                                                               >&2
-    echo "    update"                                                                       >&2
+    echo "    update [--commit [--push]]"                                                   >&2
     echo "        - Updates the formulas to the latest versions from the"                   >&2
     echo "          Android SDK.  You probably want to follow this command"                 >&2
     echo "          with the appropriate \"brew android git\" command."                     >&2
+    echo "        - If specifying the optional \"--commit\" flag, then changes"             >&2
+    echo "          will automatically be committed and pushed (if you"                     >&2
+    echo "          also specify the \"--push\" flag)."                                     >&2
     echo "    git [git_options...]"                                                         >&2
     echo "        - Runs git with the directory set to the base of this tap."               >&2
     echo "          Any options passed are just forwarded to the git command."              >&2
     echo "          You will want to use this, for example, to commit changes"              >&2
     echo "          that were made using the \"brew android update\" command."              >&2
-    echo "    autocommit [message]"                                                         >&2
+    echo "    autocommit [--push] [message]"                                                >&2
     echo "        - A shortcut for:"                                                        >&2
     echo "              \"brew android git add -A && brew android git commit\""             >&2
     echo "          with either the given message or a default one."                        >&2
+    echo "        - If you specify \"--push\", then the commit message will also"           >&2
+    echo "          be pushed to the origin."                                               >&2
     echo "    path"                                                                         >&2
     echo "        - Prints out the path of the root directory, suitable for"                >&2
     echo "          use in scripts and command line options."                               >&2
@@ -47,21 +52,23 @@ print_usage() {
 do_update() {
     FSCPT="${BIN_DIR}/generate-formulas.sh"
     ([ -x "${FSCPT}" ] || print_usage "Invalid formula generation script: '${FSCPT}'") && "${FSCPT}"
+    if [ "${1}" == "--commit" ]; then shift; do_autocommit "$@"; fi
     return $?
 }
 
 do_autocommit() {
+    if [ "${1}" == "--push" ]; then PUSHFLAG="yes"; shift; fi
     [ -n "$("${SCRIPT}" git status -s)" ] || { echo "No Changes to commit"; return 0; }
     MSG="${1-"Update to the latest versions"}"
-    "${SCRIPT}" git add -A && "${SCRIPT}" git commit -m "${MSG}"
+    "${SCRIPT}" git add -A && "${SCRIPT}" git commit -m "${MSG}" || return $?
+    if [ "${PUSHFLAG}" == "yes" ]; then git -C "${ROOT_DIR}" push; fi
     return $?
 }
-
 
 ACTION="${1}"; shift
 case "${ACTION}" in
     "update")
-        do_update
+        do_update "$@"
         ;;
     "git")
         git -C "${ROOT_DIR}" "$@"
