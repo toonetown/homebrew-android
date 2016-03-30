@@ -1,5 +1,5 @@
 cask 'android-haxm' do
-  url 'http://dl-ssl.google.com/android/repository/extras/intel/haxm-macosx_r6_0_1.zip'
+  url 'https://dl.google.com/android/repository/extras/intel/haxm-macosx_r6_0_1.zip'
   version '6.0.1'
   sha256 :no_check
   conflicts_with :cask => 'intel-haxm'

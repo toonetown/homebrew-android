@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidSdk < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/tools_r24.4.1-macosx.zip'
+  url 'https://dl.google.com/android/repository/tools_r24.4.1-macosx.zip'
   version '24.4.1'
   sha1 '90db74e1827846b0e946a26d22a4314f8cfa3701'
 

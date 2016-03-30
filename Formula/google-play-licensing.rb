@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GooglePlayLicensing < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/market_licensing-r02.zip'
+  url 'https://dl.google.com/android/repository/market_licensing-r02.zip'
   version '2'
   sha1 '355e8dc304a92a5616db235af8ee7bd554356254'
   depends_on "toonetown/android/android-sdk"

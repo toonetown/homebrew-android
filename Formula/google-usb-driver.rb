@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GoogleUsbDriver < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/usb_driver_r11-windows.zip'
+  url 'https://dl.google.com/android/repository/usb_driver_r11-windows.zip'
   version '11'
   sha1 'dc8a2ed2fbd7246d4caf9ab10ffe7749dc35d1cc'
   depends_on "toonetown/android/android-sdk"

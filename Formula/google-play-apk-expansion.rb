@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GooglePlayApkExpansion < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/market_apk_expansion-r03.zip'
+  url 'https://dl.google.com/android/repository/market_apk_expansion-r03.zip'
   version '3'
   sha1 '5305399dc1a56814e86b8459ce24871916f78b8c'
   depends_on "toonetown/android/android-sdk"

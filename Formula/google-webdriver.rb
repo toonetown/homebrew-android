@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GoogleWebdriver < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/webdriver_r02.zip'
+  url 'https://dl.google.com/android/repository/webdriver_r02.zip'
   version '2'
   sha1 '13f3a3b2670a5fc04a7342861644be9a01b07e38'
   depends_on "toonetown/android/android-sdk"

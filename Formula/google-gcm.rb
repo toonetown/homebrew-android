@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GoogleGcm < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/gcm_r03.zip'
+  url 'https://dl.google.com/android/repository/gcm_r03.zip'
   version '3'
   sha1 'ad066fd0dc7fc99d8aadac09c65a3c2519fbc7bf'
   depends_on "toonetown/android/android-sdk"

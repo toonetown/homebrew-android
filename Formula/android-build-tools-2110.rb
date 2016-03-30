@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidBuildTools2110 < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/build-tools_r21.1-macosx.zip'
+  url 'https://dl.google.com/android/repository/build-tools_r21.1-macosx.zip'
   version '21.1.0'
   sha1 'df619356c2359aa5eacdd48699d15b335d9bd246'
 

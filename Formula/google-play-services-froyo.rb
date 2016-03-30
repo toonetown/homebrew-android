@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GooglePlayServicesFroyo < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/google_play_services_3265130_r12.zip'
+  url 'https://dl.google.com/android/repository/google_play_services_3265130_r12.zip'
   version '12'
   sha1 '92558dbc380bba3d55d0ec181167fb05ce7c79d9'
   depends_on "toonetown/android/android-sdk"

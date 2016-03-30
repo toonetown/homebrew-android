@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidGapid < AndroidToolFormula
-  url 'http://dl-ssl.google.com/android/repository/extras/gapid/gapid_r01_osx.zip'
+  url 'https://dl.google.com/android/repository/extras/gapid/gapid_r01_osx.zip'
   version '1.0.3'
   sha1 '597eb271349d890566274861eba2770a84ee4c69'
   depends_on "toonetown/android/android-sdk"
