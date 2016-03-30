@@ -65,6 +65,9 @@ function gen_sdk_extra {
     fi
 }
 
+# Clean up the cask and formula directories
+rm -f "${FORMULA_DIR}/"*.rb "${CASKS_DIR}"/*.rb || exit $?
+
 # Create the SDK, platform-tools, docs, and NDK formulas
 gen_tool sdk            || exit $?
 gen_tool platform-tools || exit $?
