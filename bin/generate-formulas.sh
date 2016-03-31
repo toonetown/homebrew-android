@@ -32,11 +32,11 @@ SYSIMG_FILE="${WORK_DIR}/sysimg.xml"
 EXTRAS_FILE="${WORK_DIR}/extras.xml"
 GAPIS_SYSIMG_FILE="${WORK_DIR}/gapis_sysimg.xml"
 HAXM_FILE="${WORK_DIR}/haxm.xml"
-curl -fsSL "${REPO_URL}" -o "${REPO_FILE}"
-curl -fsSL "${SYSIMG_URL}" -o "${SYSIMG_FILE}"
-curl -fsSL "${EXTRAS_URL}" -o "${EXTRAS_FILE}"
-curl -fsSL "${GAPIS_SYSIMG_URL}" -o "${GAPIS_SYSIMG_FILE}"
-curl -fsSL "${HAXM_URL}" -o "${HAXM_FILE}"
+curl -fsSL "${REPO_URL}" -o "${REPO_FILE}"                  || exit $?
+curl -fsSL "${SYSIMG_URL}" -o "${SYSIMG_FILE}"              || exit $?
+curl -fsSL "${EXTRAS_URL}" -o "${EXTRAS_FILE}"              || exit $?
+curl -fsSL "${GAPIS_SYSIMG_URL}" -o "${GAPIS_SYSIMG_FILE}"  || exit $?
+curl -fsSL "${HAXM_URL}" -o "${HAXM_FILE}"                  || exit $?
 
 function template { cat "${TEMPLATE_DIR}/${1}.tpl"; }
 function apply_xsl { xsltproc ${3} "${XSL_DIR}/${1}.xsl" "${2}"; }
