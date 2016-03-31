@@ -18,8 +18,12 @@
         
         <xsl:text>  version '</xsl:text>
         <xsl:value-of select="./sdk:revision" />
+        <xsl:variable name="versionFlag" select="concat('-r', ./sdk:revision)" />
+        <xsl:if test="contains($archive/sdk:url, $versionFlag)">
+            <xsl:value-of select="substring-before(substring-after($archive/sdk:url, $versionFlag), '-')" />
+        </xsl:if>
         <xsl:text>'&#10;</xsl:text>
-
+        
         <xsl:text>  </xsl:text>
         <xsl:value-of select="$archive/sdk:checksum/@type" />
         <xsl:text> '</xsl:text>
