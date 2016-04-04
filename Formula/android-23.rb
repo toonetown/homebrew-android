@@ -2,9 +2,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-sdk-formula')
 
 class Android23 < AndroidPlatformFormula
-  url 'https://dl.google.com/android/repository/android-23_r02.zip'
-  version '2'
-  sha1 'a71706896fe8159015c1c02f63af6ea03ceeb79e'
+  url 'https://dl.google.com/android/repository/platform-23_r03.zip'
+  version '3'
+  sha1 '027fede3de6aa1649115bbd0bffff30ccd51c9a0'
   api_version '23'
   target_directory 'platforms'
   target_name      'android'
