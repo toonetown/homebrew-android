@@ -3,21 +3,21 @@
 require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
-class GooglePlayLicensing < AndroidToolFormula
+class GoogleMarketLicensing < AndroidToolFormula
   url 'https://dl.google.com/android/repository/market_licensing-r02.zip'
-  version '2'
+  version '1'
   sha1 '355e8dc304a92a5616db235af8ee7bd554356254'
   depends_on "toonetown/android/android-sdk"
 
   def install
-    (prefix/"extras/google/play_licensing").install Dir["*"]
-    install_tools prefix/"extras/google/play_licensing"
+    (prefix/"extras/google/market_licensing").install Dir["*"]
+    install_tools prefix/"extras/google/market_licensing"
 
-    srcProp = prefix/"extras/google/play_licensing/source.properties"
+    srcProp = prefix/"extras/google/market_licensing/source.properties"
     srcProp.delete if srcProp.exist?
     srcProp.write <<-EOS.undent
       Extra.VendorId=google
-      Extra.Path=play_licensing
+      Extra.Path=market_licensing
       Pkg.Revision=#{version}
     EOS
 

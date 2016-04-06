@@ -3,21 +3,21 @@
 require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
-class GooglePlayApkExpansion < AndroidToolFormula
+class GoogleMarketApkExpansion < AndroidToolFormula
   url 'https://dl.google.com/android/repository/market_apk_expansion-r03.zip'
-  version '3'
+  version '1'
   sha1 '5305399dc1a56814e86b8459ce24871916f78b8c'
   depends_on "toonetown/android/android-sdk"
 
   def install
-    (prefix/"extras/google/play_apk_expansion").install Dir["*"]
-    install_tools prefix/"extras/google/play_apk_expansion"
+    (prefix/"extras/google/market_apk_expansion").install Dir["*"]
+    install_tools prefix/"extras/google/market_apk_expansion"
 
-    srcProp = prefix/"extras/google/play_apk_expansion/source.properties"
+    srcProp = prefix/"extras/google/market_apk_expansion/source.properties"
     srcProp.delete if srcProp.exist?
     srcProp.write <<-EOS.undent
       Extra.VendorId=google
-      Extra.Path=play_apk_expansion
+      Extra.Path=market_apk_expansion
       Pkg.Revision=#{version}
     EOS
 

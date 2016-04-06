@@ -4,7 +4,7 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class GoogleAnalyticsSdkV2 < AndroidToolFormula
-  url 'https://dl.google.com/gaformobileapps/GoogleAnalyticsAndroid_2.0beta5.zip'
+  url 'https://dl.google.com/android/repository/GoogleAnalyticsAndroid_2.0beta5.zip'
   version '3'
   sha1 'dc14026bf0ce78315cb5dd00552607de0894de83'
   depends_on "toonetown/android/android-sdk"
