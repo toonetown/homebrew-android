@@ -125,7 +125,7 @@ for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
 done
 
 # Generate the extra formulas
-for extra in $(apply_xsl list-extras "${EXTRAS_FILE}"); do
+for extra in $(apply_xsl list-extras "${EXTRAS_FILE}" | tr ' ' '\n' | sort -u | tr '\n' ' '); do
     EXTRA_VENDOR="$(echo ${extra} | cut -d'|' -f1)"
     EXTRA_PATH="$(echo ${extra} | cut -d'|' -f2)"
     EXTRA_VENDOR_NAME="$(echo ${EXTRA_VENDOR:0:1} | tr '[:lower:]' '[:upper:]')${EXTRA_VENDOR:1}"

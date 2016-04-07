@@ -12,6 +12,11 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:key name="kExtraKey" match="sdk:extra" use="concat(sdk:vendor-id, '|', sdk:path)" />
+    <xsl:template match="sdk:extra[
+        not(generate-id() = generate-id(key('kExtraKey', concat(sdk:vendor-id, '|', sdk:path))[last()]))
+    ]" />
 
     <xsl:template match="sdk:extra">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive" />
