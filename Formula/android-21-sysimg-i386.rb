@@ -7,5 +7,5 @@ class Android21SysimgI386 < AndroidSysimgFormula
   sha1 'a0b510c66769e84fa5e40515531be2d266a4247f'
   api_version '21'
   abi 'x86'
-  sysimg_tag ''
+  sysimg_tag '/default'
 end

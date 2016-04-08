@@ -7,5 +7,5 @@ class Android23SysimgX8664 < AndroidSysimgFormula
   sha1 '8be549a1dc8cb6c0c901426cf2b737d9c6402d93'
   api_version '23'
   abi 'x86_64'
-  sysimg_tag ''
+  sysimg_tag '/default'
 end
