@@ -7,6 +7,12 @@
         <xsl:apply-templates select="sdk:tool[not(sdk:revision/sdk:preview)]" />
     </xsl:template>
 
+    
+    <xsl:key name="kExtraKey" match="sdk:tool" use="name(.)" />
+    <xsl:template match="sdk:tool[
+        not(generate-id() = generate-id(key('kExtraKey', name(.))[last()]))
+    ]" />
+
     <xsl:template match="sdk:tool">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'macosx')]/.." />
         <xsl:text>  url '</xsl:text>
