@@ -4,7 +4,7 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/repository/11">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-repository">
-        <xsl:apply-templates select="sdk:ndk" />
+        <xsl:apply-templates select="sdk:ndk[not(sdk:archives/sdk:archive/sdk:url[contains(., 'beta')])]" />
     </xsl:template>
 
     <xsl:template match="sdk:ndk">

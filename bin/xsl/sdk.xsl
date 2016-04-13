@@ -8,7 +8,7 @@
     </xsl:template>
 
     
-    <xsl:key name="kExtraKey" match="sdk:tool" use="name(.)" />
+    <xsl:key name="kExtraKey" match="sdk:tool[not(sdk:revision/sdk:preview)]" use="name(.)" />
     <xsl:template match="sdk:tool[
         not(generate-id() = generate-id(key('kExtraKey', name(.))[last()]))
     ]" />
