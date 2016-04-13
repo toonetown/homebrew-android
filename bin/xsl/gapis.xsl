@@ -15,22 +15,22 @@
     <xsl:template name="print-platform">
         <xsl:param name="platform" />
         <xsl:param name="archive" />
-        <xsl:text>  url '</xsl:text>
+        <xsl:text>  url "</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
             <xsl:text>http://dl.google.com/android/repository/</xsl:text>
         </xsl:if>
         <xsl:value-of select="$archive/sdk:url" />
-        <xsl:text>'&#10;</xsl:text>
+        <xsl:text>"&#10;</xsl:text>
 
-        <xsl:text>  version '</xsl:text>
+        <xsl:text>  version "</xsl:text>
         <xsl:value-of select="$platform/sdk:revision" />
-        <xsl:text>'&#10;</xsl:text>
+        <xsl:text>"&#10;</xsl:text>
 
         <xsl:text>  </xsl:text>
         <xsl:value-of select="$archive/sdk:checksum/@type" />
-        <xsl:text> '</xsl:text>
+        <xsl:text> "</xsl:text>
         <xsl:value-of select="$archive/sdk:checksum" />
-        <xsl:text>'</xsl:text>
+        <xsl:text>"</xsl:text>
     </xsl:template>
     
     <xsl:template match="sdk:add-on">

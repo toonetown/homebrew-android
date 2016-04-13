@@ -9,14 +9,14 @@
 
     <xsl:template match="sdk:extra">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'macosx')]/.." />
-        <xsl:text>  url '</xsl:text>
+        <xsl:text>  url "</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
             <xsl:text>https://dl.google.com/android/repository/extras/intel/</xsl:text>
         </xsl:if>
         <xsl:value-of select="$archive/sdk:url" />
-        <xsl:text>'&#10;</xsl:text>
+        <xsl:text>"&#10;</xsl:text>
         
-        <xsl:text>  version '</xsl:text>
+        <xsl:text>  version "</xsl:text>
         <xsl:value-of select="./sdk:revision/sdk:major" />
         <xsl:if test="./sdk:revision/sdk:minor">
             <xsl:text>.</xsl:text>
@@ -26,6 +26,6 @@
                 <xsl:value-of select="./sdk:revision/sdk:micro" />
             </xsl:if>
         </xsl:if>
-        <xsl:text>'</xsl:text>
+        <xsl:text>"</xsl:text>
     </xsl:template>
 </xsl:stylesheet>

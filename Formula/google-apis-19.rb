@@ -1,13 +1,13 @@
-require 'pathname'
-require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-sdk-formula')
+require "pathname"
+require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class GoogleApis19 < AndroidPlatformFormula
-  url 'http://dl.google.com/android/repository/google_apis-19_r18.zip'
-  version '18'
-  sha1 '701595b0d9985cca00be29b3c606e64731c3e1f7'
-  api_version '19'
-  target_directory 'add-ons'
-  target_name      'addon-google_apis-google'
+  url "http://dl.google.com/android/repository/google_apis-19_r18.zip"
+  version "18"
+  sha1 "701595b0d9985cca00be29b3c606e64731c3e1f7"
+  api_version "19"
+  target_directory "add-ons"
+  target_name      "addon-google_apis-google"
 
   src_properties <<-EOS.undent
     Addon.NameId=google_apis
@@ -15,6 +15,6 @@ class GoogleApis19 < AndroidPlatformFormula
     AndroidVersion.ApiLevel=19
     Pkg.Revision=#{version}
   EOS
-  
+
   depends_on "toonetown/android/android-19"
 end

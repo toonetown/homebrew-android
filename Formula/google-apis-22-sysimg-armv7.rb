@@ -1,13 +1,13 @@
-require 'pathname'
-require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-sdk-formula')
+require "pathname"
+require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class GoogleApis22SysimgArmv7 < AndroidSysimgFormula
-  url 'http://dl.google.com/android/repository/sys-img/google_apis/sysimg_arm-22_r01.zip'
-  version '1'
-  sha1 '70273783312d4519f8b503cdd8be980180fb1197'
-  api_version '22'
-  abi 'armeabi-v7a'
-  sysimg_tag '/google_apis'
+  url "http://dl.google.com/android/repository/sys-img/google_apis/sysimg_arm-22_r01.zip"
+  version "1"
+  sha1 "70273783312d4519f8b503cdd8be980180fb1197"
+  api_version "22"
+  abi "armeabi-v7a"
+  sysimg_tag "/google_apis"
 
   src_properties <<-EOS.undent
     Addon.VendorId=google
