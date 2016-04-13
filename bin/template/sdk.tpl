@@ -31,4 +31,8 @@ class AndroidSdk < AndroidToolFormula
     And you probably want to install one of the toonetown/android/android-platform-XX packages too
     EOS
   end
+
+  test do
+    system "true"
+  end
 end

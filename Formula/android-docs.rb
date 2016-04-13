@@ -15,4 +15,8 @@ class AndroidDocs < AndroidToolFormula
     install_tools prefix/"docs"
     link_sdk_dir "docs"
   end
+
+  test do
+    system "true"
+  end
 end

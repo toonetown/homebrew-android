@@ -15,4 +15,8 @@ class GoogleApis%%API_VERSION%% < AndroidPlatformFormula
   EOS
 
   depends_on "toonetown/android/android-%%API_VERSION%%"
+
+  test do
+    system "true"
+  end
 end

@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GoogleMarketApkExpansion < AndroidToolFormula
+  desc "Android Market APK Expansion library"
   url "https://dl.google.com/android/repository/market_apk_expansion-r03.zip"
   version "1"
   sha1 "5305399dc1a56814e86b8459ce24871916f78b8c"
@@ -22,5 +23,9 @@ class GoogleMarketApkExpansion < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

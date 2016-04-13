@@ -2,6 +2,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class GoogleApis14 < AndroidPlatformFormula
+  desc "Android + Google APIs"
   url "http://dl.google.com/android/repository/google_apis-14_r02.zip"
   version "2"
   sha1 "f8eb4d96ad0492b4c0db2d7e4f1a1a3836664d39"
@@ -17,4 +18,8 @@ class GoogleApis14 < AndroidPlatformFormula
   EOS
 
   depends_on "toonetown/android/android-14"
+
+  test do
+    system "true"
+  end
 end

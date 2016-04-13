@@ -17,6 +17,12 @@
 
     <xsl:template match="sdk:build-tool">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'macosx')]/.." />
+        <xsl:if test="sdk:description != ''">
+            <xsl:text>  desc "</xsl:text>
+            <xsl:value-of select="sdk:description" />
+            <xsl:text>"&#10;</xsl:text>
+        </xsl:if>
+
         <xsl:text>  url "</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
             <xsl:text>https://dl.google.com/android/repository/</xsl:text>

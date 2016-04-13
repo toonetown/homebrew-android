@@ -6,4 +6,8 @@ class Android%%API_VERSION%%Sysimg%%SHORT_ABI%% < AndroidSysimgFormula
   api_version "%%API_VERSION%%"
   abi "%%LONG_ABI%%"
   sysimg_tag "/default"
+
+  test do
+    system "true"
+  end
 end

@@ -21,4 +21,8 @@ class %%VENDOR_NAME%%%%PATH_NAME%% < AndroidToolFormula
 
     link_sdk_dir "extras/%%VENDOR%%"
   end
+
+  test do
+    system "true"
+  end
 end

@@ -23,4 +23,8 @@ class AndroidSupport < AndroidToolFormula
 
     link_sdk_dir "extras/android"
   end
+
+  test do
+    system "true"
+  end
 end

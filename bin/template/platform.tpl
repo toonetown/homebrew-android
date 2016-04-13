@@ -10,4 +10,8 @@ class Android%%API_VERSION%% < AndroidPlatformFormula
   # Dependencies for docs, sources, and samples
   sources [%%SOURCES%%]
   samples [%%SAMPLES%%]
+
+  test do
+    system "true"
+  end
 end

@@ -2,6 +2,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class Android8 < AndroidPlatformFormula
+  desc "Android SDK Platform 8, rev 3"
   url "https://dl.google.com/android/repository/android-2.2_r03-linux.zip"
   version "3"
   sha1 "231262c63eefdff8fd0386e9ccfefeb27a8f9202"
@@ -10,4 +11,8 @@ class Android8 < AndroidPlatformFormula
   target_name      "android"
 
   # Dependencies for docs, sources, and samples
+
+  test do
+    system "true"
+  end
 end

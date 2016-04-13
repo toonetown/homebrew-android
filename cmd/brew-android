@@ -24,7 +24,7 @@ print_usage() {
     echo "Usage: $(basename "${0}") <action> [options...]"                                  >&2
     echo ""                                                                                 >&2
     echo "Available actions:"                                                               >&2
-    echo "    update [--commit [--push]]"                                                   >&2
+    echo "    update [--commit [--push] [--noaudit] [message]]"                             >&2
     echo "        - Updates the formulas to the latest versions from the"                   >&2
     echo "          Android SDK.  You probably want to follow this command"                 >&2
     echo "          with the appropriate \"brew android git\" command."                     >&2
@@ -36,12 +36,18 @@ print_usage() {
     echo "          Any options passed are just forwarded to the git command."              >&2
     echo "          You will want to use this, for example, to commit changes"              >&2
     echo "          that were made using the \"brew android update\" command."              >&2
-    echo "    autocommit [--push] [message]"                                                >&2
+    echo "    audit"                                                                        >&2
+    echo "        - Will run \"brew android-audit --strict --online\" on all"               >&2
+    echo "          formulas in this tap and \"brew cask style/audit\" on all"              >&2
+    echo "          casks in this tap."                                                     >&2
+    echo "    autocommit [--push] [--noaudit] [message]"                                    >&2
     echo "        - A shortcut for:"                                                        >&2
     echo "              \"brew android git add -A && brew android git commit\""             >&2
     echo "          with either the given message or a default one."                        >&2
     echo "        - If you specify \"--push\", then the commit message will also"           >&2
     echo "          be pushed to the origin."                                               >&2
+    echo "        - The \"brew android audit\" command will be executed prior to"           >&2
+    echo "          making any changes, unless the \"--noaudit\" flag is set."              >&2
     echo "    path"                                                                         >&2
     echo "        - Prints out the path of the root directory, suitable for"                >&2
     echo "          use in scripts and command line options."                               >&2
@@ -56,9 +62,22 @@ do_update() {
     return $?
 }
 
+do_audit() {
+    [ -f "${HOMEBREW_BREW_FILE}" ] || { HOMEBREW_BREW_FILE="$(which brew)"; }
+    "${HOMEBREW_BREW_FILE}" android-audit --online --strict "${ROOT_DIR}/Formula"/* || return $?
+    "${HOMEBREW_BREW_FILE}" cask style "${ROOT_DIR}/Casks"/* || return $?
+    "${HOMEBREW_BREW_FILE}" cask audit "${ROOT_DIR}/Casks"/* || return $?
+    return $?
+}
+
 do_autocommit() {
     if [ "${1}" == "--push" ]; then PUSHFLAG="yes"; shift; fi
     [ -n "$("${SCRIPT}" git status -s)" ] || { echo "No Changes to commit"; return 0; }
+    if [ "${1}" == "--noaudit" ]; then
+        shift
+    else
+        do_audit || return $?
+    fi
     MSG="${1-"Update to the latest versions"}"
     "${SCRIPT}" git add -A && "${SCRIPT}" git commit -m "${MSG}" || return $?
     if [ "${PUSHFLAG}" == "yes" ]; then git -C "${ROOT_DIR}" push; fi
@@ -72,6 +91,9 @@ case "${ACTION}" in
         ;;
     "git")
         git -C "${ROOT_DIR}" "$@"
+        ;;
+    "audit")
+        do_audit "$@"
         ;;
     "autocommit")
         do_autocommit "$@"

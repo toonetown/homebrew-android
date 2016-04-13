@@ -15,6 +15,12 @@
 
     <xsl:template match="sdk:system-image">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive" />
+        <xsl:if test="sdk:description != ''">
+            <xsl:text>  desc "</xsl:text>
+            <xsl:value-of select="sdk:description" />
+            <xsl:text>"&#10;</xsl:text>
+        </xsl:if>
+        
         <xsl:text>  url "</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
             <xsl:text>https://dl.google.com/android/repository/sys-img/android/</xsl:text>

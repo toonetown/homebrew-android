@@ -14,4 +14,8 @@ class AndroidPlatformTools < AndroidToolFormula
 
     link_sdk_dir "platform-tools"
   end
+
+  test do
+    system "true"
+  end
 end

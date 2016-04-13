@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GooglePlayBilling < AndroidToolFormula
+  desc "Google Play Billing files and sample code"
   url "https://dl.google.com/android/repository/play_billing_r05.zip"
   version "5"
   sha1 "bd2ac5ce7127070ac3229003eb69cfb806628ac9"
@@ -22,5 +23,9 @@ class GooglePlayBilling < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

@@ -8,4 +8,8 @@ class Android23Sources < AndroidSourcesFormula
   api_version "23"
   target_directory "sources"
   target_name      "android"
+
+  test do
+    system "true"
+  end
 end

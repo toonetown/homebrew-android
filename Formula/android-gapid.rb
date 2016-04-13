@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class AndroidGapid < AndroidToolFormula
+  desc "Tools that support GPU debugging and profiling within an IDE."
   url "https://dl.google.com/android/repository/gapid_r01_linux.zip"
   version "1.0.3"
   sha1 "7c9ef7544cf0aea030bcc29bd8e12c04fd53e653"
@@ -22,5 +23,9 @@ class AndroidGapid < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/android"
+  end
+
+  test do
+    system "true"
   end
 end

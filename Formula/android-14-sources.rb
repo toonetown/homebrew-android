@@ -8,4 +8,8 @@ class Android14Sources < AndroidSourcesFormula
   api_version "14"
   target_directory "sources"
   target_name      "android"
+
+  test do
+    system "true"
+  end
 end

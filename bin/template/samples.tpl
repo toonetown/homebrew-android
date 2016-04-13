@@ -6,4 +6,8 @@ class Android%%API_VERSION%%Samples < AndroidSamplesFormula
   api_version "%%API_VERSION%%"
   target_directory "samples"
   target_name      "android"
+
+  test do
+    system "true"
+  end
 end

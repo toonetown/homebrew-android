@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GoogleUsbDriver < AndroidToolFormula
+  desc "USB Driver for Windows, revision 11"
   url "https://dl.google.com/android/repository/usb_driver_r11-windows.zip"
   version "11"
   sha1 "dc8a2ed2fbd7246d4caf9ab10ffe7749dc35d1cc"
@@ -22,5 +23,9 @@ class GoogleUsbDriver < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

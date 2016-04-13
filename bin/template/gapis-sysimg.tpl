@@ -16,4 +16,8 @@ class GoogleApis%%API_VERSION%%Sysimg%%SHORT_ABI%% < AndroidSysimgFormula
   EOS
 
   depends_on "toonetown/android/google-apis-%%API_VERSION%%"
+
+  test do
+    system "true"
+  end
 end

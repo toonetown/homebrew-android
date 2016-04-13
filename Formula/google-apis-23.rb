@@ -2,6 +2,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class GoogleApis23 < AndroidPlatformFormula
+  desc "Android + Google APIs"
   url "http://dl.google.com/android/repository/google_apis-23_r01.zip"
   version "1"
   sha1 "04c5cc1a7c88967250ebba9561d81e24104167db"
@@ -17,4 +18,8 @@ class GoogleApis23 < AndroidPlatformFormula
   EOS
 
   depends_on "toonetown/android/android-23"
+
+  test do
+    system "true"
+  end
 end

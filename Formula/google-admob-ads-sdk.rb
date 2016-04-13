@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GoogleAdmobAdsSdk < AndroidToolFormula
+  desc "AdMob Ads SDK"
   url "https://dl.google.com/android/repository/GoogleAdMobAdsSdkAndroid-6.4.1.zip"
   version "11"
   sha1 "0102859d9575baa0bf4fd5eb422af2ad0fe6cb82"
@@ -22,5 +23,9 @@ class GoogleAdmobAdsSdk < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

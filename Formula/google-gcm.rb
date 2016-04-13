@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GoogleGcm < AndroidToolFormula
+  desc "GCM library has been moved to Google Play Services (com.google.android.gms.gcm) and this standalone version is no longer supported"
   url "https://dl.google.com/android/repository/gcm_r03.zip"
   version "3"
   sha1 "ad066fd0dc7fc99d8aadac09c65a3c2519fbc7bf"
@@ -22,5 +23,9 @@ class GoogleGcm < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

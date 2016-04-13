@@ -15,4 +15,8 @@ class AndroidBuildTools%%BUILD_TOOL_VERSION%% < AndroidToolFormula
 
     link_sdk_dir "build-tools"
   end
+
+  test do
+    system "true"
+  end
 end

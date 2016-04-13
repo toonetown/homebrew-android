@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GoogleAnalyticsSdkV2 < AndroidToolFormula
+  desc "Analytics App Tracking SDK"
   url "https://dl.google.com/android/repository/GoogleAnalyticsAndroid_2.0beta5.zip"
   version "3"
   sha1 "dc14026bf0ce78315cb5dd00552607de0894de83"
@@ -22,5 +23,9 @@ class GoogleAnalyticsSdkV2 < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

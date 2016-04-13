@@ -2,6 +2,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class GoogleApis23SysimgArmv7 < AndroidSysimgFormula
+  desc "Google APIs ARM EABI v7a System Image"
   url "http://dl.google.com/android/repository/sys-img/google_apis/sysimg_arm-23_r07.zip"
   version "7"
   sha1 "8fdeb07bcdaff4211b7fd979135541b06b2adaaf"
@@ -18,4 +19,8 @@ class GoogleApis23SysimgArmv7 < AndroidSysimgFormula
   EOS
 
   depends_on "toonetown/android/google-apis-23"
+
+  test do
+    system "true"
+  end
 end

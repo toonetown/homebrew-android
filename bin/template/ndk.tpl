@@ -5,4 +5,8 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-ndk-formula"
 
 class AndroidNdk < AndroidNdkFormula
 %%ARCHIVE_INFO%%
+
+  test do
+    system "true"
+  end
 end

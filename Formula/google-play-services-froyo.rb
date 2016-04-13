@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class GooglePlayServicesFroyo < AndroidToolFormula
+  desc "Google Play services client library and sample code"
   url "https://dl.google.com/android/repository/google_play_services_3265130_r12.zip"
   version "12"
   sha1 "92558dbc380bba3d55d0ec181167fb05ce7c79d9"
@@ -22,5 +23,9 @@ class GooglePlayServicesFroyo < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/google"
+  end
+
+  test do
+    system "true"
   end
 end

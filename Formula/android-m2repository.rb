@@ -4,6 +4,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula")
 
 class AndroidM2repository < AndroidToolFormula
+  desc "Local Maven repository for Support Libraries"
   url "https://dl.google.com/android/repository/android_m2repository_r30.zip"
   version "30.0.0"
   sha1 "a06aadc0a32f1cd1c44e8004385929b17425fc37"
@@ -22,5 +23,9 @@ class AndroidM2repository < AndroidToolFormula
     EOS
 
     link_sdk_dir "extras/android"
+  end
+
+  test do
+    system "true"
   end
 end

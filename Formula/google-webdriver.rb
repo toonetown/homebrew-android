@@ -23,4 +23,8 @@ class GoogleWebdriver < AndroidToolFormula
 
     link_sdk_dir "extras/google"
   end
+
+  test do
+    system "true"
+  end
 end
