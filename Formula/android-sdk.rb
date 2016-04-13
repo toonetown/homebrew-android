@@ -4,9 +4,9 @@ require 'pathname'
 require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
 class AndroidSdk < AndroidToolFormula
-  url 'https://dl.google.com/android/repository/tools_r25.1.2-macosx.zip'
-  version '25.1.2'
-  sha1 'a295555c71c0bfb849ff313e94cf76f027815e4e'
+  url 'https://dl.google.com/android/repository/tools_r25.1.1-macosx.zip'
+  version '25.1.1'
+  sha1 '4371b642c8c709c7a673c355fe479dd849e3b698'
 
   def install
     (prefix/"tools").install Dir["*"]
