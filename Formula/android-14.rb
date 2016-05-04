@@ -2,7 +2,7 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
 class Android14 < AndroidPlatformFormula
-  desc "Android SDK Platform 14, rev 4"
+  desc "Android SDK Platform 14"
   url "https://dl.google.com/android/repository/android-14_r04.zip"
   version "4"
   sha1 "d4f1d8fbca25225b5f0e7a0adf0d39c3d6e60b3c"
