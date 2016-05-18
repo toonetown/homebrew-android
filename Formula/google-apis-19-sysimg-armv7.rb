@@ -1,24 +1,24 @@
 require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
 
-class GoogleApis21SysimgArmv7 < AndroidSysimgFormula
+class GoogleApis19SysimgArmv7 < AndroidSysimgFormula
   desc "Google APIs ARM EABI v7a System Image"
-  url "http://dl.google.com/android/repository/sys-img/google_apis/sysimg_armeabi-v7a-21_r12.zip"
-  version "12"
-  sha1 "58f203b08dbe9e0ec1f05b950fb6b43ea28ad007"
-  api_version "21"
+  url "http://dl.google.com/android/repository/sys-img/google_apis/sysimg_armeabi-v7a-19_r20.zip"
+  version "20"
+  sha1 "ba8eff47ea7378fe858c258be7b61ac2a158e65c"
+  api_version "19"
   abi "armeabi-v7a"
   sysimg_tag "/google_apis"
 
   src_properties <<-EOS.undent
     Addon.VendorId=google
-    AndroidVersion.ApiLevel=21
+    AndroidVersion.ApiLevel=19
     Pkg.Revision=#{version}
     SystemImage.Abi=armeabi-v7a
     SystemImage.TagId=google_apis
   EOS
 
-  depends_on "toonetown/android/google-apis-21"
+  depends_on "toonetown/android/google-apis-19"
 
   test do
     system "true"
