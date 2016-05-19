@@ -8,7 +8,7 @@ class AndroidNdkFormula < Formula
   def initialize(*)
     cls=self.class
 
-    cls.homepage 'http://developer.android.com/sdk/ndk/index.html'
+    cls.homepage 'https://developer.android.com/ndk/index.html'
     cls.depends_on 'toonetown/android/android-sdk'
     cls.depends_on "toonetown/android/android-platform-tools"
     super
@@ -37,9 +37,6 @@ class AndroidNdkFormula < Formula
 
     License information at:
     http://developer.android.com/sdk/terms.html
-
-    Software and System requirements at:
-    http://developer.android.com/sdk/ndk/index.html#requirements
 
     For more documentation on Android NDK, please check:
       #{prefix}/docs
