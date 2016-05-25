@@ -6,6 +6,21 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-ndk-formula"
 class AndroidNdk < AndroidNdkFormula
 %%ARCHIVE_INFO%%
 
+  def caveats; <<-EOS.undent
+    We agreed to the Android NDK License Agreement for you by downloading the NDK.
+    If this is unacceptable you should uninstall.
+
+    License information at:
+    https://developer.android.com/sdk/terms.html
+
+    The Android-NDK location for IDEs such as Eclipse, IntelliJ etc is:
+      #{prefix}
+
+    You may need to add the following to your .bashrc:
+      export ANDROID_NDK_HOME=#{opt_prefix}
+    EOS
+  end
+
   test do
     system "true"
   end

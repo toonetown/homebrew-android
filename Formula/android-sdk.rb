@@ -22,6 +22,12 @@ class AndroidSdk < AndroidToolFormula
   end
 
   def caveats; <<-EOS.undent
+    We agreed to the Android SDK License Agreement for you by downloading the SDK.
+    If this is unacceptable you should uninstall.
+
+    License information at:
+    https://developer.android.com/sdk/terms.html
+
     The Android-SDK location for IDEs such as Eclipse, IntelliJ etc is:
       #{prefix}
 
