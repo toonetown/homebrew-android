@@ -5,6 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-ndk-formula"
 
 class AndroidNdk < AndroidNdkFormula
 %%ARCHIVE_INFO%%
+  revision ({
+    "11c" => 1,
+  }[version.to_s])
 
   def caveats; <<-EOS.undent
     We agreed to the Android NDK License Agreement for you by downloading the NDK.

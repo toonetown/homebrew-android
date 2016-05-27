@@ -2,9 +2,10 @@
 # A basic formula for android NDKs
 #################
 
-require 'formula'
+require 'pathname'
+require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
 
-class AndroidNdkFormula < Formula
+class AndroidNdkFormula < AndroidToolFormula
   def initialize(*)
     cls=self.class
 
@@ -29,6 +30,8 @@ class AndroidNdkFormula < Formula
     EOS
     ndk_exec.chmod 0755
     %w[ndk-build ndk-depends ndk-gdb ndk-stack ndk-which].each { |app| bin.install_symlink ndk_exec => app }
+
+    link_all_into prefix, sdk_dir/"ndk-bundle"
   end
 
   def caveats; <<-EOS.undent

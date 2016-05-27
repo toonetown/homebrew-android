@@ -7,6 +7,9 @@ class AndroidSdk < AndroidToolFormula
   url "https://dl.google.com/android/repository/tools_r25.1.6-macosx.zip"
   version "25.1.6"
   sha1 "b04bc0088bca1df5765ba450064ecdc9fd47697a"
+  revision ({
+    "25.1.6" => 1,
+  }[version.to_s])
 
   def install
     (prefix/"tools").install Dir["*"]
@@ -14,7 +17,8 @@ class AndroidSdk < AndroidToolFormula
 
     # These are directories where other packages will insert stuff for the SDK to
     # pick up.  They are symlinked to this tree.
-    %w[platforms platform-tools build-tools samples temp add-ons sources system-images extras docs].each do |d|
+    %w[platforms platform-tools build-tools samples temp add-ons
+       sources system-images extras docs ndk-bundle].each do |d|
       src = sdk_dir/d
       src.mkpath
       prefix.install_symlink src

@@ -8,6 +8,9 @@ class AndroidNdk < AndroidNdkFormula
   url "https://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip"
   version "11c"
   sha1 "4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696"
+  revision ({
+    "11c" => 1,
+  }[version.to_s])
 
   def caveats; <<-EOS.undent
     We agreed to the Android NDK License Agreement for you by downloading the NDK.

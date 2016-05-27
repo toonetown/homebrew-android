@@ -20,11 +20,15 @@ class AndroidToolFormula < Formula
     super
   end
     
-  def link_sdk_dir dir
-    Dir.glob(prefix/dir/'*').select{ |f| File.symlink? sdk_dir/dir/File.basename(f) }.each{ |f| 
-      File.unlink sdk_dir/dir/File.basename(f)
+  def link_all_into src, dest
+    Dir.glob(src/'*').select{ |f| File.symlink? dest/File.basename(f) }.each{ |f| 
+      File.unlink dest/File.basename(f)
     }
-    (sdk_dir/dir).install_symlink Dir[prefix/dir/'*']
+    dest.install_symlink Dir[src/'*']
+  end
+
+  def link_sdk_dir dir
+    link_all_into prefix/dir, sdk_dir/dir
   end
     
   class << self
