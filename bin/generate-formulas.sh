@@ -1,7 +1,7 @@
 ######
 # A script which updates the formulas for android
 #!/bin/bash
-REPO_URL="${REPO_URL:-https://dl.google.com/android/repository/repository-11.xml}"
+REPO_URL="${REPO_URL:-https://dl.google.com/android/repository/repository-12.xml}"
 SYSIMG_URL="${SYSIMG_URL:-https://dl.google.com/android/repository/sys-img/android/sys-img.xml}"
 EXTRAS_URL="${EXTRAS_URL:-https://dl.google.com/android/repository/addon.xml}"
 GAPIS_SYSIMG_URL="${GAPIS_SYSIMG_URL:-https://dl.google.com/android/repository/sys-img/google_apis/sys-img.xml}"
