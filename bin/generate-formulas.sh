@@ -88,6 +88,22 @@ for buildTool in $(apply_xsl list-build-tools "${REPO_FILE}"); do
         > "${FORMULA_DIR}/android-build-tools-${buildToolVersion}.rb" || exit $?
 done
 
+# Generate the lldb tools for each major/minor version
+for lldb in $(apply_xsl list-lldb "${REPO_FILE}"); do
+    lldbMajMin=$(echo "${lldb}" | cut -d'.' -f1-2)
+    lldbVersion=$(echo "${lldbMajMin}" | sed -e 's/\.//g')
+    VERSION_PARAM="--param tool-major $(echo "${lldb}" | cut -d'.' -f1) 
+                   --param tool-minor $(echo "${lldb}" | cut -d'.' -f2) 
+                   --param tool-micro $(echo "${lldb}" | cut -d'.' -f3)"
+
+    # Create the formula for this version
+    template lldb | \
+        do_replace "ARCHIVE_INFO" "$(apply_xsl lldb "${REPO_FILE}" "${VERSION_PARAM}")" | \
+        do_replace "LLDB_MAJ_MIN" "${lldbMajMin}" | \
+        do_replace "LLDB_VERSION" "${lldbVersion}" \
+        > "${FORMULA_DIR}/android-lldb-${lldbVersion}.rb" || exit $?
+done
+
 # Generate a platform formula for each one in the repository
 for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
     API_PARAM="--param api-level ${plat}"

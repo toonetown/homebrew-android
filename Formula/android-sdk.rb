@@ -8,7 +8,7 @@ class AndroidSdk < AndroidToolFormula
   version "25.1.6"
   sha1 "b04bc0088bca1df5765ba450064ecdc9fd47697a"
   revision ({
-    "25.1.6" => 1,
+    "25.1.6" => 2,
   }[version.to_s])
 
   def install
@@ -18,7 +18,7 @@ class AndroidSdk < AndroidToolFormula
     # These are directories where other packages will insert stuff for the SDK to
     # pick up.  They are symlinked to this tree.
     %w[platforms platform-tools build-tools samples temp add-ons
-       sources system-images extras docs ndk-bundle].each do |d|
+       sources system-images extras docs ndk-bundle lldb].each do |d|
       src = sdk_dir/d
       src.mkpath
       prefix.install_symlink src
