@@ -7,7 +7,7 @@ cask 'android-haxm' do
   installer script:       'silent_install.sh',
             sudo:         true,
             must_succeed: true
-  artifact '.', target:   '/usr/local/var/lib/android-sdk/extras/intel/Hardware_Accelerated_Execution_Manager'
+  binary '.', target:     '/usr/local/var/lib/android-sdk/extras/intel/Hardware_Accelerated_Execution_Manager'
 
   postflight do
     File.open("#{staged_path}/source.properties", 'w') do |src_prop|
