@@ -32,6 +32,10 @@ class AndroidNdkFormula < AndroidToolFormula
     %w[ndk-build ndk-depends ndk-gdb ndk-stack ndk-which].each { |app| bin.install_symlink ndk_exec => app }
 
     link_all_into prefix, sdk_dir/"ndk-bundle"
+    
+    # Clean up any old package.xml
+    pkg_xml=sdk_dir/"ndk-bundle"/"package.xml"
+    pkg_xml.delete if pkg_xml.exist?
   end
 
   def caveats; <<-EOS.undent

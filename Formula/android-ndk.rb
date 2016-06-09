@@ -10,6 +10,7 @@ class AndroidNdk < AndroidNdkFormula
   sha1 "708d4025142924f7097a9f44edf0a35965706737"
   revision ({
     "11c" => 1,
+    "12" => 1,
   }[version.to_s])
 
   def caveats; <<-EOS.undent

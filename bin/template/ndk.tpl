@@ -7,6 +7,7 @@ class AndroidNdk < AndroidNdkFormula
 %%ARCHIVE_INFO%%
   revision ({
     "11c" => 1,
+    "12" => 1,
   }[version.to_s])
 
   def caveats; <<-EOS.undent
