@@ -5,9 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula
 
 class AndroidGapid3 < AndroidToolFormula
   desc "Tools that support GPU debugging and profiling within an IDE."
-  url "https://dl.google.com/android/repository/gapid_2980123_linux.zip"
-  version "3.0.0"
-  sha1 "c6b6f35517fd5b754e6d7ce750e98a6a4e4cc8df"
+  url "https://dl.google.com/android/repository/gapid_2994895_linux.zip"
+  version "3.1.0"
+  sha1 "a33fe37c87b095171d647385445abe164ae03514"
   depends_on "toonetown/android/android-sdk"
 
   def install
