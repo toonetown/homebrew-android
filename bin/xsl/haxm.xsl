@@ -23,6 +23,9 @@
         <xsl:text>'&#10;</xsl:text>
         <xsl:text>  sha256 :no_check&#10;&#10;</xsl:text>
 
+        <xsl:if test="not(contains($archive/sdk:url, '://'))">
+            <xsl:text>  # dl.google.com was verified as official when first introduced to the cask&#10;</xsl:text>
+        </xsl:if>
         <xsl:text>  url '</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
             <xsl:text>https://dl.google.com/android/repository/extras/intel/</xsl:text>

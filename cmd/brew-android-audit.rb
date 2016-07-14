@@ -13,6 +13,9 @@ class FormulaAuditor
       p[/^Description is too long\./]                                 ||
       p[/^Formula should have a desc \(Description\)\./]              ||
       
+      # We can't really control this
+      p[/^The installation was broken\./]                             ||
+
       # End with false so that our "ors" line up above
       false
     }
