@@ -1,9 +1,7 @@
 #################
 # A basic tool-based formula (which gets linked correctly)
 #################
-
-require 'formula'
-require 'pathname'
+require Pathname(__FILE__).realpath.dirname.join('../lib', 'no-compat')
 
 class AndroidToolFormula < Formula
   def sdk_dir; var/"lib/android-sdk"; end
