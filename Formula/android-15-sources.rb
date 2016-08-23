@@ -1,5 +1,5 @@
 require "pathname"
-require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
+require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula") unless defined?(android_sdk_formula)
 
 class Android15Sources < AndroidSourcesFormula
   url "https://dl.google.com/android/repository/sources-15_r02.zip"

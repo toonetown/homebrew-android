@@ -1,5 +1,5 @@
 require "pathname"
-require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
+require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula") unless defined?(android_sdk_formula)
 
 class Android15SysimgArmv7 < AndroidSysimgFormula
   desc "ARM EABI v7a System Image"

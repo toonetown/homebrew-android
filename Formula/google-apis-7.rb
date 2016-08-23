@@ -1,5 +1,5 @@
 require "pathname"
-require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula")
+require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula") unless defined?(android_sdk_formula)
 
 class GoogleApis7 < AndroidPlatformFormula
   desc "Android + Google APIs"

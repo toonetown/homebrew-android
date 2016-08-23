@@ -34,3 +34,5 @@ class Pathname
     incremental_hash(Digest::SHA1)
   end
 end
+
+def android_no_compat; end

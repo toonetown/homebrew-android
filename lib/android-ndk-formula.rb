@@ -3,7 +3,7 @@
 #################
 
 require 'pathname'
-require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
+require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula') unless defined?(android_tool_formula)
 
 class AndroidNdkFormula < AndroidToolFormula
   def initialize(*)
@@ -50,3 +50,5 @@ class AndroidNdkFormula < AndroidToolFormula
     EOS
   end  
 end
+
+def android_ndk_formula; end

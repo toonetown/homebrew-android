@@ -3,7 +3,7 @@
 #################
 
 require 'pathname'
-require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula')
+require Pathname(__FILE__).realpath.dirname.join('../lib', 'android-tool-formula') unless defined?(android_tool_formula)
 
 class AndroidSdkFormula < AndroidToolFormula
   def initialize(*)
@@ -99,3 +99,4 @@ class AndroidSysimgFormula < AndroidToolFormula
   end
 end
 
+def android_sdk_formula; end
