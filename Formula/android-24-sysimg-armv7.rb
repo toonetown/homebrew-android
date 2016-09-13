@@ -3,9 +3,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class Android24SysimgArmv7 < AndroidSysimgFormula
   desc "ARM EABI v7a System Image"
-  url "https://dl.google.com/android/repository/sys-img/android/sysimg_armeabi-v7a-24_r06.zip"
-  version "6"
-  sha1 "e40c4cb6a18293ca064d7414ae7248364f988c33"
+  url "https://dl.google.com/android/repository/sys-img/android/armeabi-v7a-24_r07.zip"
+  version "7"
+  sha1 "3454546b4eed2d6c3dd06d47757d6da9f4176033"
   api_version "24"
   abi "armeabi-v7a"
   sysimg_tag "/default"
