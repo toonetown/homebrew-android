@@ -1,4 +1,4 @@
-require "cmd/audit"
+require "dev-cmd/audit"
 
 class FormulaAuditor
   def problems
