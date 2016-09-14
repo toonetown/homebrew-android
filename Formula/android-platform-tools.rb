@@ -4,9 +4,9 @@ require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula") unless defined?(android_tool_formula)
 
 class AndroidPlatformTools < AndroidToolFormula
-  url "https://dl.google.com/android/repository/platform-tools_r24.0.2-macosx.zip"
-  version "24.0.2"
-  sha1 "16053da716cbc6ef31c32a0d2f1437b22089c88c"
+  url "https://dl.google.com/android/repository/platform-tools_r24.0.3-macosx.zip"
+  version "24.0.3"
+  sha1 "8210f0c7430e35020f19eae73a0c365d4e839501"
 
   depends_on "toonetown/android/android-sdk"
 
