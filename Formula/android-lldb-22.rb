@@ -5,9 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula
 
 class AndroidLldb22 < AndroidToolFormula
   desc "LLDB 2.2"
-  url "https://dl.google.com/android/repository/lldb-2.2.3094112-darwin-x86_64.zip"
-  version "2.2.3094112"
-  sha1 "0eda822b304ca18f0cde8091e337b89458cec6a4"
+  url "https://dl.google.com/android/repository/lldb-2.2.3271982-darwin-x86_64.zip"
+  version "2.2.3271982"
+  sha1 "62089f4e35775e6cedb82d1fa377fdc1de898005"
 
   depends_on "toonetown/android/android-sdk"
   depends_on "toonetown/android/android-ndk"
