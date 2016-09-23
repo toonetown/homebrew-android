@@ -4,8 +4,20 @@
                 xmlns:sdk="http://schemas.android.com/sdk/android/addon/7">
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-addon">
-        <xsl:apply-templates select="sdk:extra" />
+      <xsl:for-each select="sdk:extra">
+          <xsl:if test="sdk:vendor-id = 'intel' and sdk:path = 'Hardware_Accelerated_Execution_Manager' and
+                        contains(sdk:archives/sdk:archive/sdk:host-os, 'macosx')">
+              <xsl:apply-templates select="." />
+          </xsl:if>
+      </xsl:for-each>
     </xsl:template>
+
+    <xsl:key name="kExtraKey" match="sdk:extra" use="concat(sdk:vendor-id, '|', sdk:path, 
+                                                            '|', sdk:archives/sdk:archive/sdk:host-os)" />
+    <xsl:template match="sdk:extra[
+        not(generate-id() = generate-id(key('kExtraKey', concat(sdk:vendor-id, '|', sdk:path,
+                                                                '|', sdk:archives/sdk:archive/sdk:host-os))[last()]))
+    ]" />
 
     <xsl:template match="sdk:extra">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive/sdk:host-os[contains(., 'macosx')]/.." />
