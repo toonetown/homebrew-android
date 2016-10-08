@@ -1,6 +1,5 @@
 cask 'android-haxm' do
 %%ARCHIVE_INFO%%
-  license :closed
 
   conflicts_with cask: 'intel-haxm'
 
