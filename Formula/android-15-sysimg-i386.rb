@@ -3,9 +3,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class Android15SysimgI386 < AndroidSysimgFormula
   desc "Intel x86 Atom System Image"
-  url "https://dl.google.com/android/repository/sys-img/android/sysimg_x86-15_r02.zip"
-  version "2"
-  sha1 "56b8d4b3d0f6a8876bc78d654da186f3b7b7c44f"
+  url "https://dl.google.com/android/repository/sys-img/android/x86-15_r04.zip"
+  version "4"
+  sha1 "e45c728b64881c0e86529a8f7ea9c103a3cd14c1"
   api_version "15"
   abi "x86"
   sysimg_tag "/default"
