@@ -3,9 +3,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class GoogleApis24SysimgX8664 < AndroidSysimgFormula
   desc "Google APIs Intel x86 Atom_64 System Image"
-  url "http://dl.google.com/android/repository/sys-img/google_apis/x86_64-24_r09.zip"
-  version "9"
-  sha1 "8912d1a049a8b540d6327f1d32fe51a6f39b80a4"
+  url "http://dl.google.com/android/repository/sys-img/google_apis/x86_64-24_r10.zip"
+  version "10"
+  sha1 "2b827df6e27039d82eada3854ffe80f0b451097b"
   api_version "24"
   abi "x86_64"
   sysimg_tag "/google_apis"
