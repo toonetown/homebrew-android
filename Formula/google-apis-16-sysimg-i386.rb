@@ -1,20 +1,20 @@
 require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula") unless defined?(android_sdk_formula)
 
-class GoogleApis16SysimgArmv7 < AndroidSysimgFormula
-  desc "Google APIs ARM EABI v7a System Image"
-  url "http://dl.google.com/android/repository/sys-img/google_apis/armeabi-v7a-16_r05.zip"
+class GoogleApis16SysimgI386 < AndroidSysimgFormula
+  desc "Google APIs Intel x86 Atom System Image"
+  url "http://dl.google.com/android/repository/sys-img/google_apis/x86-16_r05.zip"
   version "5"
-  sha1 "990ef55bcf4500debd723626bc14aa10bf4914fe"
+  sha1 "b7dee11fb413f04d67983dd331e2837213d35b49"
   api_version "16"
-  abi "armeabi-v7a"
+  abi "x86"
   sysimg_tag "/google_apis"
 
   src_properties <<-EOS.undent
     Addon.VendorId=google
     AndroidVersion.ApiLevel=16
     Pkg.Revision=#{version}
-    SystemImage.Abi=armeabi-v7a
+    SystemImage.Abi=x86
     SystemImage.TagId=google_apis
   EOS
 
