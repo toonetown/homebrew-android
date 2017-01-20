@@ -119,21 +119,29 @@ for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
     gen_sdk_extra ${plat} samples || exit $?
 
     # Pull up the images for this platform
-    for img in $(apply_xsl list-sysimgs "${SYSIMG_FILE}" "${API_PARAM}"); do
+    imgs_="$(apply_xsl list-sysimgs "${SYSIMG_FILE}" "${API_PARAM}")"; IFS=";" read -a imgs <<< "${imgs_}"
+    for img in "${imgs[@]}"; do
         LONG_ABI="$(echo ${img} | cut -d'|' -f1)"
         SHORT_ABI="$(echo ${img} | cut -d'|' -f2)"
         LOWER_ABI="$(echo "${SHORT_ABI}" | tr '[:upper:]' '[:lower:]')"
         NAME="android-${plat}-sysimg-${LOWER_ABI}"
+        SYSIMG_TAG="$(echo ${img} | cut -d'|' -f3)"
+        SYSIMG_TAG_DISPLAY="$(echo ${img} | cut -d'|' -f4)"
+        [ -n "${SYSIMG_TAG_DISPLAY}" ] && {
+            SYSIMG_TAG_DISPLAY="$(echo -ne "\n    ")SystemImage.TagDisplay=${SYSIMG_TAG_DISPLAY}"
+        }
 
         ABI_PARAM="${API_PARAM} --stringparam abi ${LONG_ABI}"
         template sysimg | \
             do_replace "ARCHIVE_INFO" "$(apply_xsl sysimg "${SYSIMG_FILE}" "${ABI_PARAM}")" | \
             do_replace "API_VERSION" "${plat}" | \
             do_replace "SHORT_ABI" "$(echo "${SHORT_ABI}" | tr -d '_')" | \
-            do_replace "LONG_ABI" "${LONG_ABI}" \
+            do_replace "LONG_ABI" "${LONG_ABI}" | \
+            do_replace "SYSIMG_TAG" "${SYSIMG_TAG}" | \
+            do_replace "SYSIMG_TAG_DISPLAY" "${SYSIMG_TAG_DISPLAY}" \
                 > "${FORMULA_DIR}/${NAME}.rb" || exit $?
 
-        if [ -n "$(echo "${img}" | cut -d'|' -f3)" ]; then
+        if [ -n "$(echo "${img}" | cut -d'|' -f5)" ]; then
             sed_inplace "s|\(%%SYSIMG%%\)|    \"toonetown/android/${NAME}\",$(printf '\a')\1|" \
                         "${FORMULA_DIR}/android-${plat}.rb"
         fi
@@ -169,21 +177,29 @@ for plat in $(apply_xsl list-gapis "${EXTRAS_FILE}"); do
         > "${FORMULA_DIR}/google-apis-${plat}.rb" || exit $?
 
     # Pull up the images for this platform
-    for img in $(apply_xsl list-sysimgs "${GAPIS_SYSIMG_FILE}" "${API_PARAM}"); do
+    imgs_="$(apply_xsl list-sysimgs "${GAPIS_SYSIMG_FILE}" "${API_PARAM}")"; IFS=";" read -a imgs <<< "${imgs_}"
+    for img in "${imgs[@]}"; do
         LONG_ABI="$(echo ${img} | cut -d'|' -f1)"
         SHORT_ABI="$(echo ${img} | cut -d'|' -f2)"
         LOWER_ABI="$(echo "${SHORT_ABI}" | tr '[:upper:]' '[:lower:]')"
         NAME="google-apis-${plat}-sysimg-${LOWER_ABI}"
+        SYSIMG_TAG="$(echo ${img} | cut -d'|' -f3)"
+        SYSIMG_TAG_DISPLAY="$(echo ${img} | cut -d'|' -f4)"
+        [ -n "${SYSIMG_TAG_DISPLAY}" ] && {
+            SYSIMG_TAG_DISPLAY="$(echo -ne "\n    ")SystemImage.TagDisplay=${SYSIMG_TAG_DISPLAY}"
+        }
 
         ABI_PARAM="${API_PARAM} --stringparam abi ${LONG_ABI}"
         template gapis-sysimg | \
             do_replace "ARCHIVE_INFO" "$(apply_xsl gapis-sysimg "${GAPIS_SYSIMG_FILE}" "${ABI_PARAM}")" | \
             do_replace "API_VERSION" "${plat}" | \
             do_replace "SHORT_ABI" "$(echo "${SHORT_ABI}" | tr -d '_')" | \
-            do_replace "LONG_ABI" "${LONG_ABI}" \
+            do_replace "LONG_ABI" "${LONG_ABI}" | \
+            do_replace "SYSIMG_TAG" "${SYSIMG_TAG}" | \
+            do_replace "SYSIMG_TAG_DISPLAY" "${SYSIMG_TAG_DISPLAY}" \
                 > "${FORMULA_DIR}/${NAME}.rb" || exit $?
 
-        if [ -n "$(echo "${img}" | cut -d'|' -f3)" ]; then
+        if [ -n "$(echo "${img}" | cut -d'|' -f5)" ]; then
             sed_inplace "s|\(%%SYSIMG%%\)|    \"toonetown/android/${NAME}\",$(printf '\a')\1|" \
                         "${FORMULA_DIR}/google-apis-${plat}.rb"
         fi

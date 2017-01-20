@@ -11,11 +11,11 @@ class GoogleApis15SysimgI386 < AndroidSysimgFormula
   sysimg_tag "/google_apis"
 
   src_properties <<-EOS.undent
-    Addon.VendorId=google
     AndroidVersion.ApiLevel=15
     Pkg.Revision=#{version}
     SystemImage.Abi=x86
     SystemImage.TagId=google_apis
+    SystemImage.TagDisplay=Google APIs
   EOS
 
   depends_on "toonetown/android/google-apis-15"

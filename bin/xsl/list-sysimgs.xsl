@@ -15,16 +15,32 @@
     <xsl:template match="sdk:system-image">
         <xsl:choose>
             <xsl:when test="./sdk:abi = 'armeabi-v7a'">
-                <xsl:text>armeabi-v7a|Armv7|yes </xsl:text>
+                <xsl:text>armeabi-v7a|Armv7|</xsl:text>
+                <xsl:value-of select="sdk:tag-id" />
+                <xsl:text>|</xsl:text>
+                <xsl:value-of select="sdk:tag-display" />
+                <xsl:text>|yes;</xsl:text>
             </xsl:when>
             <xsl:when test="./sdk:abi = 'x86'">
-                <xsl:text>x86|I386|yes </xsl:text>
+                <xsl:text>x86|I386|</xsl:text>
+                <xsl:value-of select="sdk:tag-id" />
+                <xsl:text>|</xsl:text>
+                <xsl:value-of select="sdk:tag-display" />
+                <xsl:text>|yes;</xsl:text>
             </xsl:when>
             <xsl:when test="./sdk:abi = 'x86_64'">
-                <xsl:text>x86_64|X86_64 </xsl:text>
+                <xsl:text>x86_64|X86_64|</xsl:text>
+                <xsl:value-of select="sdk:tag-id" />
+                <xsl:text>|</xsl:text>
+                <xsl:value-of select="sdk:tag-display" />
+                <xsl:text>|;</xsl:text>
             </xsl:when>
             <xsl:when test="./sdk:abi = 'mips'">
-                <xsl:text>mips|Mips </xsl:text>
+                <xsl:text>mips|Mips|</xsl:text>
+                <xsl:value-of select="sdk:tag-id" />
+                <xsl:text>|</xsl:text>
+                <xsl:value-of select="sdk:tag-display" />
+                <xsl:text>|;</xsl:text>
             </xsl:when>
         </xsl:choose>
     </xsl:template>

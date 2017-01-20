@@ -5,14 +5,13 @@ class GoogleApis%%API_VERSION%%Sysimg%%SHORT_ABI%% < AndroidSysimgFormula
 %%ARCHIVE_INFO%%
   api_version "%%API_VERSION%%"
   abi "%%LONG_ABI%%"
-  sysimg_tag "/google_apis"
+  sysimg_tag "/%%SYSIMG_TAG%%"
 
   src_properties <<-EOS.undent
-    Addon.VendorId=google
     AndroidVersion.ApiLevel=%%API_VERSION%%
     Pkg.Revision=#{version}
     SystemImage.Abi=%%LONG_ABI%%
-    SystemImage.TagId=google_apis
+    SystemImage.TagId=%%SYSIMG_TAG%%%%SYSIMG_TAG_DISPLAY%%
   EOS
 
   depends_on "toonetown/android/google-apis-%%API_VERSION%%"

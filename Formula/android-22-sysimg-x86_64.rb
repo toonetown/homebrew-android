@@ -10,6 +10,13 @@ class Android22SysimgX8664 < AndroidSysimgFormula
   abi "x86_64"
   sysimg_tag "/default"
 
+  src_properties <<-EOS.undent
+    AndroidVersion.ApiLevel=22
+    Pkg.Revision=#{version}
+    SystemImage.Abi=x86_64
+    SystemImage.TagId=default
+  EOS
+
   test do
     system "true"
   end

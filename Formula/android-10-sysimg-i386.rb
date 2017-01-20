@@ -10,6 +10,13 @@ class Android10SysimgI386 < AndroidSysimgFormula
   abi "x86"
   sysimg_tag "/default"
 
+  src_properties <<-EOS.undent
+    AndroidVersion.ApiLevel=10
+    Pkg.Revision=#{version}
+    SystemImage.Abi=x86
+    SystemImage.TagId=default
+  EOS
+
   test do
     system "true"
   end

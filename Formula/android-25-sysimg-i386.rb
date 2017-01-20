@@ -8,7 +8,15 @@ class Android25SysimgI386 < AndroidSysimgFormula
   sha1 "7dd19cfee4e43a1f60e0f5f058404d92d9544b33"
   api_version "25"
   abi "x86"
-  sysimg_tag "/default"
+  sysimg_tag "/google_apis"
+
+  src_properties <<-EOS.undent
+    AndroidVersion.ApiLevel=25
+    Pkg.Revision=#{version}
+    SystemImage.Abi=x86
+    SystemImage.TagId=google_apis
+    SystemImage.TagDisplay=Google APIs
+  EOS
 
   test do
     system "true"
