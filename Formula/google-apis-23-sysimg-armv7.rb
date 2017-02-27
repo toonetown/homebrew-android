@@ -3,9 +3,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class GoogleApis23SysimgArmv7 < AndroidSysimgFormula
   desc "Google APIs ARM EABI v7a System Image"
-  url "http://dl.google.com/android/repository/sys-img/google_apis/armeabi-v7a-23_r19.zip"
-  version "19"
-  sha1 "1db36f54d9cd036fd1cf096de0bb81ae2312bfec"
+  url "http://dl.google.com/android/repository/sys-img/google_apis/armeabi-v7a-23_r20.zip"
+  version "20"
+  sha1 "6e26f563cc1c17a5eb3bc899d695858edbbb5c03"
   api_version "23"
   abi "armeabi-v7a"
   sysimg_tag "/google_apis"
