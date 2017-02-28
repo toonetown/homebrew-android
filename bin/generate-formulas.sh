@@ -175,8 +175,12 @@ for plat in $(apply_xsl list-gapis "${EXTRAS_FILE}"); do
         do_replace "ARCHIVE_INFO" "$(apply_xsl gapis "${EXTRAS_FILE}" "${API_PARAM}")" | \
         do_replace "API_VERSION" "${plat}" \
         > "${FORMULA_DIR}/google-apis-${plat}.rb" || exit $?
+done
 
+# Generate the Google API images (based on versions from the repo file)
+for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
     # Pull up the images for this platform
+    API_PARAM="--param api-level ${plat}"
     imgs_="$(apply_xsl list-sysimgs "${GAPIS_SYSIMG_FILE}" "${API_PARAM}")"; IFS=";" read -a imgs <<< "${imgs_}"
     for img in "${imgs[@]}"; do
         LONG_ABI="$(echo ${img} | cut -d'|' -f1)"
@@ -198,11 +202,6 @@ for plat in $(apply_xsl list-gapis "${EXTRAS_FILE}"); do
             do_replace "SYSIMG_TAG" "${SYSIMG_TAG}" | \
             do_replace "SYSIMG_TAG_DISPLAY" "${SYSIMG_TAG_DISPLAY}" \
                 > "${FORMULA_DIR}/${NAME}.rb" || exit $?
-
-        if [ -n "$(echo "${img}" | cut -d'|' -f5)" ]; then
-            sed_inplace "s|\(%%SYSIMG%%\)|    \"toonetown/android/${NAME}\",$(printf '\a')\1|" \
-                        "${FORMULA_DIR}/google-apis-${plat}.rb"
-        fi
     done
 done
 
