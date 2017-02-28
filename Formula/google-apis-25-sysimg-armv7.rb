@@ -18,7 +18,7 @@ class GoogleApis25SysimgArmv7 < AndroidSysimgFormula
     SystemImage.TagDisplay=Google APIs
   EOS
 
-  depends_on "toonetown/android/google-apis-25"
+  depends_on "toonetown/android/android-25"
 
   test do
     system "true"

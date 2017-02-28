@@ -14,7 +14,7 @@ class GoogleApis%%API_VERSION%%Sysimg%%SHORT_ABI%% < AndroidSysimgFormula
     SystemImage.TagId=%%SYSIMG_TAG%%%%SYSIMG_TAG_DISPLAY%%
   EOS
 
-  depends_on "toonetown/android/google-apis-%%API_VERSION%%"
+  depends_on "toonetown/android/android-%%API_VERSION%%"
 
   test do
     system "true"
