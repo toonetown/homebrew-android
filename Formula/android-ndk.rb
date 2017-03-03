@@ -5,9 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-ndk-formula"
 
 class AndroidNdk < AndroidNdkFormula
   desc "NDK"
-  url "https://dl.google.com/android/repository/android-ndk-r13b-darwin-x86_64.zip"
-  version "13b"
-  sha1 "71fe653a7bf5db08c3af154735b6ccbc12f0add5"
+  url "https://dl.google.com/android/repository/android-ndk-r14-darwin-x86_64.zip"
+  version "14"
+  sha1 "d121c9e4f359ff65fb4d003bdd7dbe5dd9cf7295"
   revision ({
     "11c" => 1,
     "12" => 1,
