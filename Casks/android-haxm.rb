@@ -1,9 +1,9 @@
 cask 'android-haxm' do
-  version '6.0.5'
+  version '6.1.1'
   sha256 :no_check
 
   # dl.google.com was verified as official when first introduced to the cask
-  url 'https://dl.google.com/android/repository/extras/intel/haxm-macosx_r6_0_5.zip'
+  url 'https://dl.google.com/android/repository/extras/intel/haxm-macosx_r6_1_1.zip'
   name 'Intel x86 Emulator Accelerator (HAXM installer)'
   homepage 'http://software.intel.com/'
 
