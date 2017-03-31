@@ -7,6 +7,9 @@ EXTRAS_URL="${EXTRAS_URL:-https://dl.google.com/android/repository/addon.xml}"
 GAPIS_SYSIMG_URL="${GAPIS_SYSIMG_URL:-https://dl.google.com/android/repository/sys-img/google_apis/sys-img.xml}"
 HAXM_URL="${HAXM_URL:-https://dl.google.com/android/repository/extras/intel/addon.xml}"
 
+PRESERVED_FORMULA=("fb-adb.rb")
+PRESERVED_CASKS=()
+
 # Set up our variables
 cd "$(dirname "${0}")"
 BIN_DIR="$(pwd)"
@@ -66,7 +69,11 @@ function gen_sdk_extra {
 }
 
 # Clean up the cask and formula directories
+for k in "${PRESERVED_FORMULA[@]}"; do mv "${FORMULA_DIR}/${k}" "${FORMULA_DIR}/${k}.keep"; done
+for k in "${PRESERVED_CASKS[@]}"; do mv "${CASKS_DIR}/${k}" "${CASKS_DIR}/${k}.keep"; done
 rm -f "${FORMULA_DIR}/"*.rb "${CASKS_DIR}"/*.rb || exit $?
+for k in "${PRESERVED_CASKS[@]}"; do mv "${CASKS_DIR}/${k}.keep" "${CASKS_DIR}/${k}"; done
+for k in "${PRESERVED_FORMULA[@]}"; do mv "${FORMULA_DIR}/${k}.keep" "${FORMULA_DIR}/${k}"; done
 
 # Create the SDK, platform-tools, docs, and NDK formulas
 gen_tool sdk            || exit $?
@@ -204,12 +211,6 @@ for plat in $(apply_xsl list-platforms "${REPO_FILE}"); do
                 > "${FORMULA_DIR}/${NAME}.rb" || exit $?
     done
 done
-
-
-# Copy (and stub in) our fb-adb formula
-brew cat Homebrew/homebrew/fb-adb | \
-    sed -e 's|depends_on "android|depends_on "toonetown/android/android|g' \
-        > "${FORMULA_DIR}/fb-adb.rb"
 
 # Create our android-intel-haxm cask
 for haxm in $(apply_xsl list-extras "${HAXM_FILE}" | head -n1); do
