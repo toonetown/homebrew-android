@@ -14,7 +14,7 @@ class AndroidToolFormula < Formula
     cls.cleanup_links sdk_dir
     ObjectSpace.define_finalizer(self, cls.finalize(sdk_dir))
 
-    cls.homepage 'http://developer.android.com/index.html'
+    cls.homepage 'https://developer.android.com/index.html'
     super
   end
     
