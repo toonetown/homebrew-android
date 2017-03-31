@@ -23,7 +23,7 @@
         
         <xsl:text>  url "</xsl:text>
         <xsl:if test="not(contains($archive/sdk:url, '://'))">
-            <xsl:text>http://dl.google.com/android/repository/sys-img/google_apis/</xsl:text>
+            <xsl:text>https://dl.google.com/android/repository/sys-img/google_apis/</xsl:text>
         </xsl:if>
         <xsl:value-of select="$archive/sdk:url" />
         <xsl:text>"&#10;</xsl:text>

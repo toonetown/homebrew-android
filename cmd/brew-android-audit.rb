@@ -8,6 +8,7 @@ class FormulaAuditor
 
       # We want the version no matter what
       p[/^Stable: version [0-9\.]+ is redundant/]                     ||
+      p[/^Stable version URLs should not contain .*/]                 ||
       
       # We do our best at getting a description
       p[/^Description is too long\./]                                 ||
@@ -15,6 +16,7 @@ class FormulaAuditor
       
       # We can't really control this
       p[/^The installation was broken\./]                             ||
+      p[/^.*Don't use parentheses around a method call\./]            ||
 
       # End with false so that our "ors" line up above
       false

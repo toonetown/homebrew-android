@@ -3,7 +3,7 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class GoogleApis24 < AndroidPlatformFormula
   desc "Android + Google APIs"
-  url "http://dl.google.com/android/repository/google_apis-24_r1.zip"
+  url "https://dl.google.com/android/repository/google_apis-24_r1.zip"
   version "1"
   sha1 "31361c2868f27343ee917fbd259c1463821b6145"
   api_version "24"
