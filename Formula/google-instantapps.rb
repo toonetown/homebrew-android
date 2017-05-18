@@ -3,22 +3,22 @@
 require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula") unless defined?(android_tool_formula)
 
-class GoogleM2repository < AndroidToolFormula
-  desc "Local Maven repository for Support Libraries"
-  url "https://dl.google.com/android/repository/google_m2repository_gms_v9_3_rc10_wear_2_0_2_rc1.zip"
-  version "51"
-  sha1 "92db08ff913be8561f9984752b6d9121816c3da2"
+class GoogleInstantapps < AndroidToolFormula
+  desc "Android Instant Apps Development SDK"
+  url "https://dl.google.com/android/repository/aiasdk-1.0.0.zip"
+  version "1.0.0"
+  sha1 "50074a0f0312ee1d0d81d2cddc3d84a8a9e97a53"
   depends_on "toonetown/android/android-sdk"
 
   def install
-    (prefix/"extras/google/m2repository").install Dir["*"]
-    install_tools prefix/"extras/google/m2repository"
+    (prefix/"extras/google/instantapps").install Dir["*"]
+    install_tools prefix/"extras/google/instantapps"
 
-    src_prop = prefix/"extras/google/m2repository/source.properties"
+    src_prop = prefix/"extras/google/instantapps/source.properties"
     src_prop.delete if src_prop.exist?
     src_prop.write <<-EOS.undent
       Extra.VendorId=google
-      Extra.Path=m2repository
+      Extra.Path=instantapps
       Pkg.Revision=#{version}
     EOS
 
