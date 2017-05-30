@@ -6,7 +6,7 @@
     <xsl:output method="text" />
     <xsl:template match="sdk:sdk-addon">
         <xsl:for-each select="sdk:add-on[string(sdk:name-id) = 'google_apis']">
-            <xsl:if test="sdk:api-level = $api-level">
+            <xsl:if test="sdk:api-level = $api-level and sdk:archives/sdk:archive/sdk:url[contains(., $api-level)]">
                 <xsl:apply-templates select="." />
             </xsl:if>
         </xsl:for-each>
