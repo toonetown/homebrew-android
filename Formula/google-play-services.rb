@@ -5,9 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula
 
 class GooglePlayServices < AndroidToolFormula
   desc "Google Play services Javadocs and sample code"
-  url "https://dl.google.com/android/repository/google_play_services_v9_3_rc09.zip"
-  version "40"
-  sha1 "e8bc3106ba704ab76251efb6b5fd3a9e04fad7b2"
+  url "https://dl.google.com/android/repository/google_play_services_v11_rc16.zip"
+  version "41"
+  sha1 "55be81c50041f6a8f62947418f74f683369c971f"
   depends_on "toonetown/android/android-sdk"
 
   def install

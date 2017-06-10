@@ -5,9 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula
 
 class GoogleM2repository < AndroidToolFormula
   desc "Local Maven repository for Support Libraries"
-  url "https://dl.google.com/android/repository/google_m2repository_gms_v9_3_rc10_wear_2_0_2_rc1.zip"
-  version "51"
-  sha1 "92db08ff913be8561f9984752b6d9121816c3da2"
+  url "https://dl.google.com/android/repository/google_m2repository_gms_v11_1_rc16_wear_2_0_3_rc1.zip"
+  version "53"
+  sha1 "9008082eb1e6ff5a78d32a1fed6915f266fc5013"
   depends_on "toonetown/android/android-sdk"
 
   def install
