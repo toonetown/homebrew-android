@@ -3,10 +3,10 @@
 require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula") unless defined?(android_tool_formula)
 
-class AndroidBuildTools2600 < AndroidToolFormula
-  url "https://dl.google.com/android/repository/build-tools_r26-macosx.zip"
-  version "26.0.0"
-  sha1 "d01a1aeca03747245f1f5936b3cb01759c66d086"
+class AndroidBuildTools2601 < AndroidToolFormula
+  url "https://dl.google.com/android/repository/build-tools_r26.0.1-macosx.zip"
+  version "26.0.1"
+  sha1 "cbde59de198916b390777dd0227921bfa2120832"
 
   depends_on "toonetown/android/android-sdk"
   depends_on "toonetown/android/android-platform-tools"

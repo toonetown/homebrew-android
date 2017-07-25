@@ -3,9 +3,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class Android26 < AndroidPlatformFormula
   desc "Android SDK Platform 26"
-  url "https://dl.google.com/android/repository/platform-26_r01.zip"
-  version "1"
-  sha1 "33a4f9788bfd7123e712906b2d7e5d54a729e14a"
+  url "https://dl.google.com/android/repository/platform-26_r02.zip"
+  version "2"
+  sha1 "e4ae5d7aa557a3c827135838ee400da8443ac4ef"
   api_version "26"
   target_directory "platforms"
   target_name      "android"
