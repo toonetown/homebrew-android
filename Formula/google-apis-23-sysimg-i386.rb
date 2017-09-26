@@ -3,9 +3,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula"
 
 class GoogleApis23SysimgI386 < AndroidSysimgFormula
   desc "Google APIs Intel x86 Atom System Image"
-  url "https://dl.google.com/android/repository/sys-img/google_apis/x86-23_r24.zip"
-  version "24"
-  sha1 "7c46517b1631126e3c041f9609f683b97d77b922"
+  url "https://dl.google.com/android/repository/sys-img/google_apis/x86-23_r23.zip"
+  version "23"
+  sha1 "d071f34bf9925c51394a24b3ff9bd4d41c2a50d9"
   api_version "23"
   abi "x86"
   sysimg_tag "/google_apis"

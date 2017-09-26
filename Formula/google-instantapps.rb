@@ -5,9 +5,9 @@ require Pathname(__FILE__).realpath.dirname.join("../lib", "android-tool-formula
 
 class GoogleInstantapps < AndroidToolFormula
   desc "Android Instant Apps Development SDK"
-  url "https://dl.google.com/android/repository/aiasdk-1.0.0.zip"
-  version "1.0.0"
-  sha1 "50074a0f0312ee1d0d81d2cddc3d84a8a9e97a53"
+  url "https://dl.google.com/android/repository/aiasdk-1.1.0.zip"
+  version "1.1.0"
+  sha1 "c29db977db46ce727e11ac0882ef30f19cc34a5c"
   depends_on "toonetown/android/android-sdk"
 
   def install
