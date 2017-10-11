@@ -5,7 +5,7 @@ class GoogleApis16SysimgI386 < AndroidSysimgFormula
   desc "Google APIs Intel x86 Atom System Image"
   url "https://dl.google.com/android/repository/sys-img/google_apis/x86-16_r05.zip"
   version "5"
-  sha1 "b7dee11fb413f04d67983dd331e2837213d35b49"
+  sha1 "7edc5c0836fa32f8d453788c002ca0ee1bc5a0a2"
   api_version "16"
   abi "x86"
   sysimg_tag "/google_apis"
