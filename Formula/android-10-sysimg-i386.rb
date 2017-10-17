@@ -1,19 +1,19 @@
 require "pathname"
 require Pathname(__FILE__).realpath.dirname.join("../lib", "android-sdk-formula") unless defined?(android_sdk_formula)
 
-class Android10SysimgArmv7 < AndroidSysimgFormula
-  desc "ARM EABI v7a System Image"
-  url "https://dl.google.com/android/repository/sys-img/android/armv7-10_r04.zip"
+class Android10SysimgI386 < AndroidSysimgFormula
+  desc "Intel x86 Atom System Image"
+  url "https://dl.google.com/android/repository/sys-img/android/x86-10_r04.zip"
   version "4"
-  sha1 "54680383118eb5c95a11e1cc2a14aa572c86ee69"
+  sha1 "655ffc5cc89dd45a3aca154b254009016e473aeb"
   api_version "10"
-  abi "armeabi-v7a"
+  abi "x86"
   sysimg_tag "/default"
 
   src_properties <<-EOS.undent
     AndroidVersion.ApiLevel=10
     Pkg.Revision=#{version}
-    SystemImage.Abi=armeabi-v7a
+    SystemImage.Abi=x86
     SystemImage.TagId=default
   EOS
 
