@@ -13,6 +13,11 @@
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:key name="kExtraKey" match="sdk:system-image[string(sdk:codename) = '']" use="concat(sdk:api-level, '|', sdk:abi)" />
+    <xsl:template match="sdk:system-image[
+        not(generate-id() = generate-id(key('kExtraKey', concat(sdk:api-level, '|', sdk:abi))[last()]))
+    ]" />
+
     <xsl:template match="sdk:system-image">
         <xsl:variable name="archive" select="./sdk:archives/sdk:archive" />
         <xsl:if test="sdk:description != ''">
